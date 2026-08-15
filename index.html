@@ -359,8 +359,8 @@ Customer Name
 <div class="total">
 
 <div>
-<span>Subtotal</span>
-<strong id="subtotal">Rs. 0</strong>
+<span>total</span>
+<strong id="total">Rs. 0</strong>
 </div>
 
 <div>
@@ -603,7 +603,7 @@ let total=
 taxable+tax;
 
 
-document.getElementById("subtotal").textContent=
+document.getElementById("total").textContent=
 money(subtotal);
 
 document.getElementById("discountAmount").textContent=
@@ -688,16 +688,16 @@ addItem();
 
 /* DEFAULT ITEMS */
 
-addItem(
-"Welding Gate Fabrication",
+addItemname(
+"",
 1,
-25000
+
 );
 
-addItem(
-"Paint & Finishing",
+addItemname(
+"",
 1,
-5000
+
 );
 
 
