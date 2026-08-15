@@ -40,7 +40,12 @@ font-weight:bold;
 
 .blue{
 background:#2563eb;
-color:#fff;
+color:white;
+}
+
+.green{
+background:#16a34a;
+color:white;
 }
 
 .light{
@@ -61,7 +66,7 @@ gap:25px;
 }
 
 .card{
-background:#fff;
+background:white;
 padding:22px;
 border-radius:16px;
 box-shadow:0 5px 20px #0001;
@@ -111,7 +116,7 @@ padding:10px 13px;
 .invoice{
 padding:30px;
 border:1px solid #ddd;
-background:#fff;
+background:white;
 min-height:500px;
 }
 
@@ -182,11 +187,9 @@ margin-top:15px;
 flex-wrap:wrap;
 }
 
-.download{
-background:#16a34a;
-color:white;
-width:100%;
-font-size:16px;
+.actions button{
+flex:1;
+min-width:150px;
 }
 
 @media(max-width:800px){
@@ -223,22 +226,34 @@ padding:18px;
 
 @media print{
 
+body{
+background:white;
+}
+
 header,
 .form,
-.actions{
+.actions,
+h2{
 display:none!important;
 }
 
 .container{
 padding:0;
+max-width:none;
 }
 
 .grid{
 display:block;
 }
 
+.card{
+box-shadow:none;
+padding:0;
+}
+
 .invoice{
 border:0;
+padding:20px;
 }
 
 }
@@ -265,7 +280,7 @@ New Invoice
 <div class="grid">
 
 
-<!-- LEFT SIDE -->
+<!-- FORM -->
 
 <div class="card form">
 
@@ -311,9 +326,7 @@ type="date">
 <select id="status">
 
 <option>Unpaid</option>
-
 <option>Paid</option>
-
 <option>Pending</option>
 
 </select>
@@ -371,7 +384,7 @@ Update Invoice
 </div>
 
 
-<!-- RIGHT SIDE -->
+<!-- PREVIEW -->
 
 <div class="card">
 
@@ -440,11 +453,8 @@ Customer Name
 <tr>
 
 <th>Item</th>
-
 <th>Quantity</th>
-
 <th>Price</th>
-
 <th>Total</th>
 
 </tr>
@@ -506,17 +516,25 @@ Rs. 0
 
 </div>
 
-
 </div>
 
 
 <div class="actions">
 
 <button
-class="download"
+class="green"
 onclick="downloadPicture()">
 
 🖼️ Download Picture
+
+</button>
+
+
+<button
+class="blue"
+onclick="printInvoice()">
+
+🖨️ Print / PDF
 
 </button>
 
@@ -529,7 +547,7 @@ onclick="downloadPicture()">
 </div>
 
 
-<!-- HTML2CANVAS -->
+<!-- IMAGE GENERATOR -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
 </script>
@@ -540,7 +558,7 @@ onclick="downloadPicture()">
 let itemNumber=0;
 
 
-/* TODAY */
+/* DATE */
 
 function today(){
 
@@ -633,9 +651,7 @@ document.getElementById(
 );
 
 if(item){
-
 item.remove();
-
 }
 
 updateInvoice();
@@ -851,7 +867,7 @@ money(total);
 }
 
 
-/* SECURITY */
+/* SAFE TEXT */
 
 function escapeHTML(text){
 
@@ -870,12 +886,11 @@ return String(text)
 }
 
 
-/* DOWNLOAD PNG */
+/* DOWNLOAD PICTURE */
 
 async function downloadPicture(){
 
 updateInvoice();
-
 
 if(typeof html2canvas==="undefined"){
 
@@ -888,13 +903,11 @@ return;
 }
 
 
-const invoice=
-document.getElementById(
-"invoice"
-);
-
-
 try{
+
+const invoice=
+document.getElementById("invoice");
+
 
 const canvas=
 await html2canvas(
@@ -949,6 +962,17 @@ alert(
 }
 
 
+/* PRINT / PDF */
+
+function printInvoice(){
+
+updateInvoice();
+
+window.print();
+
+}
+
+
 /* NEW INVOICE */
 
 function newInvoice(){
@@ -993,7 +1017,6 @@ document.getElementById(
 
 itemNumber=0;
 
-
 addItem();
 
 }
@@ -1029,7 +1052,7 @@ updateInvoice
 });
 
 
-/* START WITH ONE EMPTY ITEM */
+/* ONE EMPTY ITEM */
 
 addItem();
 
@@ -1039,3 +1062,6 @@ updateInvoice();
 
 </body>
 </html>
+
+Ab "🖼️ Download Picture" se sirf PNG image download hogi.
+Aur "🖨️ Print / PDF" se computer/printer ka print dialog khulega; wahan printer select karke print ya Save as PDF kar sakte hain.
