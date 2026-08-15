@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>InvoicePro</title>
 
 <style>
@@ -16,7 +16,7 @@ color:#172033;
 }
 
 header{
-background:white;
+background:#fff;
 padding:18px 6%;
 display:flex;
 justify-content:space-between;
@@ -40,12 +40,17 @@ font-weight:bold;
 
 .blue{
 background:#2563eb;
-color:white;
+color:#fff;
 }
 
 .light{
 background:#eef2ff;
 color:#2563eb;
+}
+
+.green{
+background:#16a34a;
+color:#fff;
 }
 
 .container{
@@ -61,7 +66,7 @@ gap:25px;
 }
 
 .card{
-background:white;
+background:#fff;
 padding:22px;
 border-radius:16px;
 box-shadow:0 5px 20px #0001;
@@ -101,7 +106,7 @@ color:#b91c1c;
 .invoice{
 padding:30px;
 border:1px solid #ddd;
-background:white;
+background:#fff;
 min-height:500px;
 }
 
@@ -166,8 +171,9 @@ font-weight:bold;
 
 .actions{
 display:flex;
-gap:10px;
+gap:8px;
 margin-top:15px;
+flex-wrap:wrap;
 }
 
 @media(max-width:800px){
@@ -177,6 +183,7 @@ grid-template-columns:1fr;
 }
 
 @media(max-width:550px){
+
 .item{
 grid-template-columns:1fr 1fr;
 }
@@ -188,9 +195,15 @@ flex-direction:column;
 .meta{
 text-align:left;
 }
+
+.invoice{
+padding:18px;
+}
+
 }
 
 @media print{
+
 header,
 .form,
 .actions{
@@ -208,6 +221,7 @@ display:block;
 .invoice{
 border:0;
 }
+
 }
 </style>
 </head>
@@ -293,15 +307,18 @@ Update Invoice
 
 <h2>Invoice Preview</h2>
 
-<div class="invoice">
+<div class="invoice" id="invoice">
 
 <div class="invoice-top">
 
 <div>
+
 <h1>INVOICE</h1>
+
 <p id="previewBusiness">
 Your Business Name
 </p>
+
 </div>
 
 <div class="meta">
@@ -343,10 +360,12 @@ Customer Name
 <thead>
 
 <tr>
+
 <th>Item</th>
 <th>Qty</th>
 <th>Price</th>
 <th>Total</th>
+
 </tr>
 
 </thead>
@@ -359,8 +378,8 @@ Customer Name
 <div class="total">
 
 <div>
-<span>total</span>
-<strong id="total">Rs. 0</strong>
+<span>Subtotal</span>
+<strong id="subtotal">Rs. 0</strong>
 </div>
 
 <div>
@@ -385,12 +404,16 @@ Customer Name
 
 <div class="actions">
 
-<button class="blue" onclick="window.print()">
-🖨️ Print / Save PDF
+<button class="blue" onclick="downloadImage()">
+⬇️ Download Image
 </button>
 
-<button class="light" onclick="whatsapp()">
-📱 WhatsApp
+<button class="green" onclick="shareImage()">
+📱 Share Invoice Image
+</button>
+
+<button class="light" onclick="window.print()">
+🖨️ Print / PDF
 </button>
 
 </div>
@@ -400,6 +423,11 @@ Customer Name
 </div>
 
 </div>
+
+
+<!-- html2canvas -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 
 <script>
@@ -407,7 +435,7 @@ Customer Name
 let itemNumber=0;
 
 
-/* TODAY */
+/* DATE */
 
 function today(){
 
@@ -440,23 +468,20 @@ item.innerHTML=`
 
 <input
 class="itemName"
-placeholder="Service / Product"
-value="${name}"
-oninput="updateInvoice()">
+placeholder="Item / Service"
+value="${name}">
 
 <input
 class="itemQty"
 type="number"
 value="${qty}"
-min="1"
-oninput="updateInvoice()">
+min="1">
 
 <input
 class="itemPrice"
 type="number"
 value="${price}"
-min="0"
-oninput="updateInvoice()">
+min="0">
 
 <button
 class="remove"
@@ -467,6 +492,10 @@ onclick="removeItem(${itemNumber})">
 `;
 
 document.getElementById("items").appendChild(item);
+
+item.querySelectorAll("input").forEach(input=>{
+input.addEventListener("input",updateInvoice);
+});
 
 updateInvoice();
 
@@ -559,11 +588,12 @@ let total=qty*price;
 
 subtotal+=total;
 
+
 html+=`
 
 <tr>
 
-<td>${name}</td>
+<td>${escapeHTML(name)}</td>
 
 <td>${qty}</td>
 
@@ -603,7 +633,7 @@ let total=
 taxable+tax;
 
 
-document.getElementById("total").textContent=
+document.getElementById("subtotal").textContent=
 money(subtotal);
 
 document.getElementById("discountAmount").textContent=
@@ -618,46 +648,103 @@ money(total);
 }
 
 
-/* WHATSAPP */
+/* SAFE TEXT */
 
-function whatsapp(){
+function escapeHTML(text){
 
-let phone=
-document.getElementById("phone").value
-.replace(/\D/g,"");
+return String(text)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
 
-if(phone.startsWith("0")){
-phone="92"+phone.substring(1);
 }
 
-let business=
-document.getElementById("business").value
-||"Business";
 
-let customer=
-document.getElementById("customer").value
-||"Customer";
+/* DOWNLOAD IMAGE */
 
-let total=
-document.getElementById("grandTotal").textContent;
+async function downloadImage(){
+
+updateInvoice();
+
+const invoice=document.getElementById("invoice");
+
+const canvas=await html2canvas(invoice,{
+scale:2,
+backgroundColor:"#ffffff"
+});
+
+const link=document.createElement("a");
+
+link.download=
+(document.getElementById("number").value||"invoice")
++".png";
+
+link.href=canvas.toDataURL("image/png");
+
+link.click();
+
+}
 
 
-let message=
-"Invoice from "+business+
-"%0ACustomer: "+customer+
-"%0ATotal: "+total;
+/* SHARE IMAGE */
 
+async function shareImage(){
 
-window.open(
-"https://wa.me/"+phone+
-"?text="+message,
-"_blank"
+updateInvoice();
+
+const invoice=document.getElementById("invoice");
+
+const canvas=await html2canvas(invoice,{
+scale:2,
+backgroundColor:"#ffffff"
+});
+
+canvas.toBlob(async blob=>{
+
+if(!blob)return;
+
+const file=new File(
+[blob],
+"invoice.png",
+{type:"image/png"}
+);
+
+if(
+navigator.share &&
+navigator.canShare &&
+navigator.canShare({files:[file]})
+){
+
+try{
+
+await navigator.share({
+title:"Invoice",
+text:"Invoice",
+files:[file]
+});
+
+}catch(error){
+
+console.log(error);
+
+}
+
+}else{
+
+alert(
+"Is browser mein direct image sharing available nahi hai. Pehle Download Image karein, phir WhatsApp mein image bhej dein."
 );
 
 }
 
+},"image/png");
 
-/* NEW */
+}
+
+
+/* NEW INVOICE */
 
 function newInvoice(){
 
@@ -686,22 +773,7 @@ addItem();
 }
 
 
-/* DEFAULT ITEMS */
-
-addItemname(
-"",
-1,
-
-);
-
-addItemname(
-"",
-1,
-
-);
-
-
-/* LIVE UPDATE */
+/* LIVE FIELDS */
 
 [
 "business",
@@ -714,14 +786,18 @@ addItemname(
 "discount"
 ].forEach(id=>{
 
-document.getElementById(id)
-.addEventListener("input",updateInvoice);
+let element=document.getElementById(id);
 
-document.getElementById(id)
-.addEventListener("change",updateInvoice);
+element.addEventListener("input",updateInvoice);
+
+element.addEventListener("change",updateInvoice);
 
 });
 
+
+/* START WITH ONE EMPTY ITEM */
+
+addItem();
 
 updateInvoice();
 
