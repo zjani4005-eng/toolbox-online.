@@ -1,1293 +1,729 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToolBox Online - Free Online Tools</title>
-    <meta name="description" content="Free online tools including word counter, age calculator, QR generator, image tools, PDF merger, calculators and more.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InvoicePro</title>
 
-    <!-- PDF Merger Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<style>
+*{box-sizing:border-box}
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f7fb;
+color:#172033;
+}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f5f7fb;
-            color: #172033;
-            line-height: 1.5;
-        }
+header{
+background:white;
+padding:18px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #ddd;
+}
 
-        header {
-            background: #ffffff;
-            border-bottom: 1px solid #e5e7eb;
-            padding: 16px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.logo{
+font-size:24px;
+font-weight:bold;
+color:#2563eb;
+}
 
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            color: #2563eb;
-            text-decoration: none;
-        }
+button{
+border:0;
+padding:11px 16px;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+}
 
-        nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #374151;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
+.blue{
+background:#2563eb;
+color:white;
+}
 
-        nav a:hover {
-            color: #2563eb;
-        }
+.light{
+background:#eef2ff;
+color:#2563eb;
+}
 
-        .hero {
-            text-align: center;
-            padding: 50px 20px;
-            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
-            border-bottom: 1px solid #e5e7eb;
-        }
+.container{
+max-width:1100px;
+margin:auto;
+padding:30px 18px;
+}
 
-        .hero h1 {
-            font-size: 38px;
-            color: #1e293b;
-            margin-bottom: 8px;
-        }
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+}
 
-        .hero p {
-            color: #64748b;
-            font-size: 18px;
-        }
+.card{
+background:white;
+padding:22px;
+border-radius:16px;
+box-shadow:0 5px 20px #0001;
+}
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 30px 20px;
-        }
+label{
+display:block;
+font-weight:bold;
+font-size:14px;
+margin-top:14px;
+}
 
-        .tools {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-        }
+input,select{
+width:100%;
+padding:11px;
+margin-top:6px;
+border:1px solid #ccd3df;
+border-radius:8px;
+}
 
-        .card {
-            background: #ffffff;
-            padding: 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
-                        0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+.item{
+display:grid;
+grid-template-columns:2fr .7fr 1fr auto;
+gap:7px;
+margin-bottom:8px;
+}
 
-        .card h2 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: #0f172a;
-        }
+.item input{
+margin:0;
+}
 
-        textarea,
-        input,
-        select {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            margin: 8px 0 14px 0;
-            font-family: inherit;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
-            background: #fff;
-        }
+.remove{
+background:#fee2e2;
+color:#b91c1c;
+}
 
-        textarea:focus,
-        input:focus,
-        select:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-        }
+.invoice{
+padding:30px;
+border:1px solid #ddd;
+background:white;
+min-height:500px;
+}
 
-        textarea {
-            resize: vertical;
-        }
+.invoice-top{
+display:flex;
+justify-content:space-between;
+border-bottom:2px solid #2563eb;
+padding-bottom:20px;
+}
 
-        button {
-            background: #2563eb;
-            color: #ffffff;
-            border: 0;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            width: 100%;
-            margin-top: 3px;
-        }
+.invoice h1{
+color:#2563eb;
+margin:0;
+}
 
-        button:hover {
-            background: #1d4ed8;
-        }
+.meta{
+text-align:right;
+}
 
-        .secondary-btn {
-            background: #475569;
-        }
+.status{
+display:inline-block;
+padding:5px 10px;
+border-radius:20px;
+background:#dcfce7;
+color:#166534;
+font-size:12px;
+font-weight:bold;
+}
 
-        .secondary-btn:hover {
-            background: #334155;
-        }
+.customer{
+margin:25px 0;
+}
 
-        .result {
-            margin-top: 14px;
-            font-weight: 600;
-            font-size: 15px;
-            color: #1e293b;
-            min-height: 24px;
-            word-break: break-word;
-        }
+table{
+width:100%;
+border-collapse:collapse;
+}
 
-        .qr-output img {
-            display: block;
-            margin: 10px auto 0;
-            border-radius: 8px;
-        }
+th,td{
+padding:10px;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
 
-        .preview-image {
-            max-width: 100%;
-            max-height: 180px;
-            display: block;
-            margin: 10px auto;
-            border-radius: 8px;
-        }
+.total{
+margin-left:auto;
+width:250px;
+margin-top:20px;
+}
 
-        .ad {
-            min-height: 90px;
-            background: #eef0f3;
-            border: 1px dashed #cbd5e1;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 14px;
-            margin: 30px 0;
-        }
+.total div{
+display:flex;
+justify-content:space-between;
+padding:6px;
+}
 
-        .file-label {
-            font-size: 13px;
-            color: #64748b;
-            margin-top: 4px;
-            display: block;
-        }
+.grand{
+border-top:2px solid #172033;
+font-size:20px;
+font-weight:bold;
+}
 
-        footer {
-            text-align: center;
-            padding: 24px;
-            background: #0f172a;
-            color: #94a3b8;
-            font-size: 14px;
-            margin-top: 40px;
-        }
+.actions{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
 
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 28px;
-            }
+@media(max-width:800px){
+.grid{
+grid-template-columns:1fr;
+}
+}
 
-            nav {
-                display: none;
-            }
+@media(max-width:550px){
+.item{
+grid-template-columns:1fr 1fr;
+}
 
-            .container {
-                padding: 20px 14px;
-            }
+.invoice-top{
+flex-direction:column;
+}
 
-            .tools {
-                gap: 16px;
-            }
+.meta{
+text-align:left;
+}
+}
 
-            .card {
-                padding: 20px;
-            }
-        }
-    </style>
+@media print{
+header,
+.form,
+.actions{
+display:none!important;
+}
+
+.container{
+padding:0;
+}
+
+.grid{
+display:block;
+}
+
+.invoice{
+border:0;
+}
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <a href="#" class="logo">ToolBox Online</a>
 
-    <nav>
-        <a href="#tools">Tools</a>
-        <a href="#about">About</a>
-    </nav>
+<div class="logo">
+InvoicePro
+</div>
+
+<button class="light" onclick="newInvoice()">
+New Invoice
+</button>
+
 </header>
 
-<section class="hero">
-    <h1>Free Online Tools</h1>
-    <p>Simple, fast, and privacy-focused utilities for everyday tasks.</p>
-</section>
 
 <div class="container">
 
-    <div class="ad">Advertisement Space</div>
+<div class="grid">
 
-    <section id="tools" class="tools">
 
-        <!-- 1. WORD COUNTER -->
-        <div class="card">
-            <div>
-                <h2>Word Counter</h2>
-                <textarea id="wordText" rows="5" placeholder="Type or paste your text..."></textarea>
-            </div>
+<!-- FORM -->
 
-            <div>
-                <button onclick="countWords()">Count Words</button>
-                <div class="result" id="wordResult">Words: 0</div>
-            </div>
-        </div>
+<div class="card form">
 
-        <!-- 2. AGE CALCULATOR -->
-        <div class="card">
-            <div>
-                <h2>Age Calculator</h2>
-                <input type="date" id="birthDate">
-            </div>
+<h2>Create Invoice</h2>
 
-            <div>
-                <button onclick="calculateAge()">Calculate Age</button>
-                <div class="result" id="ageResult"></div>
-            </div>
-        </div>
+<label>Business Name</label>
+<input id="business" placeholder="Your Business Name">
 
-        <!-- 3. QR CODE -->
-        <div class="card">
-            <div>
-                <h2>QR Code Generator</h2>
-                <input id="qrText" placeholder="Enter URL or string">
-            </div>
+<label>Customer Name</label>
+<input id="customer" placeholder="Customer Name">
 
-            <div>
-                <button onclick="generateQR()">Generate QR</button>
-                <div id="qrResult" class="result qr-output"></div>
-            </div>
-        </div>
+<label>Customer Phone</label>
+<input id="phone" placeholder="03XXXXXXXXX">
 
-        <!-- 4. CHARACTER COUNTER -->
-        <div class="card">
-            <div>
-                <h2>Character Counter</h2>
-                <textarea id="charText" rows="5" placeholder="Type something..."></textarea>
-            </div>
+<label>Invoice Number</label>
+<input id="number" value="INV-001">
 
-            <div>
-                <div class="result">
-                    <span id="charResult">0</span> characters
-                </div>
-            </div>
-        </div>
+<label>Date</label>
+<input id="date" type="date">
 
-        <!-- 5. IMAGE COMPRESSOR -->
-        <div class="card">
-            <div>
-                <h2>Image Compressor</h2>
-                <span class="file-label">Choose an image</span>
-                <input type="file" id="compressFile" accept="image/*">
+<label>Payment Status</label>
 
-                <label class="file-label">Quality</label>
-                <input type="range" id="compressQuality" min="10" max="100" value="70">
-                <div class="small-quality">
-                    Quality: <span id="qualityValue">70</span>%
-                </div>
-            </div>
+<select id="status">
+<option>Unpaid</option>
+<option>Paid</option>
+<option>Pending</option>
+</select>
 
-            <div>
-                <button onclick="compressImage()">Compress Image</button>
-                <div class="result" id="compressResult"></div>
-            </div>
-        </div>
 
-        <!-- 6. IMAGE RESIZER -->
-        <div class="card">
-            <div>
-                <h2>Image Resizer</h2>
-                <input type="file" id="resizeFile" accept="image/*">
-                <input type="number" id="resizeWidth" placeholder="Width in pixels">
-                <input type="number" id="resizeHeight" placeholder="Height in pixels">
-            </div>
+<h3>Items</h3>
 
-            <div>
-                <button onclick="resizeImage()">Resize Image</button>
-                <div class="result" id="resizeResult"></div>
-            </div>
-        </div>
+<div id="items"></div>
 
-        <!-- 7. JPG TO PNG -->
-        <div class="card">
-            <div>
-                <h2>JPG → PNG</h2>
-                <input type="file" id="jpgPngFile" accept=".jpg,.jpeg,image/jpeg">
-            </div>
+<button class="light" onclick="addItem()">
++ Add Item
+</button>
 
-            <div>
-                <button onclick="jpgToPng()">Convert to PNG</button>
-                <div class="result" id="jpgPngResult"></div>
-            </div>
-        </div>
 
-        <!-- 8. PNG TO JPG -->
-        <div class="card">
-            <div>
-                <h2>PNG → JPG</h2>
-                <input type="file" id="pngJpgFile" accept=".png,image/png">
-            </div>
+<label>Tax %</label>
+<input id="tax" type="number" value="0">
 
-            <div>
-                <button onclick="pngToJpg()">Convert to JPG</button>
-                <div class="result" id="pngJpgResult"></div>
-            </div>
-        </div>
 
-        <!-- 9. PDF MERGER -->
-        <div class="card">
-            <div>
-                <h2>PDF Merger</h2>
-                <span class="file-label">Select two or more PDF files</span>
-                <input type="file" id="pdfFiles" accept=".pdf,application/pdf" multiple>
-            </div>
+<label>Discount %</label>
+<input id="discount" type="number" value="0">
 
-            <div>
-                <button onclick="mergePDFs()">Merge PDFs</button>
-                <div class="result" id="pdfResult"></div>
-            </div>
-        </div>
+<br><br>
 
-        <!-- 10. PASSWORD GENERATOR -->
-        <div class="card">
-            <div>
-                <h2>Password Generator</h2>
-                <input type="number" id="passwordLength" value="16" min="4" max="100" placeholder="Password length">
-                <input type="text" id="passwordOutput" readonly placeholder="Generated password">
-            </div>
-
-            <div>
-                <button onclick="generatePassword()">Generate Password</button>
-                <button class="secondary-btn" onclick="copyPassword()">Copy Password</button>
-                <div class="result" id="passwordResult"></div>
-            </div>
-        </div>
-
-        <!-- 11. TEXT CASE CONVERTER -->
-        <div class="card">
-            <div>
-                <h2>Text Case Converter</h2>
-                <textarea id="caseText" rows="5" placeholder="Enter your text..."></textarea>
-            </div>
-
-            <div>
-                <button onclick="convertUpper()">UPPERCASE</button>
-                <button onclick="convertLower()">lowercase</button>
-                <button onclick="convertTitle()">Title Case</button>
-            </div>
-        </div>
-
-        <!-- 12. UNIT CONVERTER -->
-        <div class="card">
-            <div>
-                <h2>Unit Converter</h2>
-
-                <input type="number" id="unitValue" placeholder="Enter value">
-
-                <select id="unitType">
-                    <option value="km-mi">Kilometers → Miles</option>
-                    <option value="mi-km">Miles → Kilometers</option>
-                    <option value="kg-lb">Kilograms → Pounds</option>
-                    <option value="lb-kg">Pounds → Kilograms</option>
-                    <option value="m-ft">Meters → Feet</option>
-                    <option value="ft-m">Feet → Meters</option>
-                    <option value="c-f">Celsius → Fahrenheit</option>
-                    <option value="f-c">Fahrenheit → Celsius</option>
-                    <option value="l-gal">Liters → US Gallons</option>
-                    <option value="gal-l">US Gallons → Liters</option>
-                </select>
-            </div>
-
-            <div>
-                <button onclick="convertUnit()">Convert</button>
-                <div class="result" id="unitResult"></div>
-            </div>
-        </div>
-
-        <!-- 13. PERCENTAGE CALCULATOR -->
-        <div class="card">
-            <div>
-                <h2>Percentage Calculator</h2>
-                <input type="number" id="percentageValue" placeholder="Percentage">
-                <input type="number" id="percentageNumber" placeholder="Number">
-            </div>
-
-            <div>
-                <button onclick="calculatePercentage()">Calculate</button>
-                <div class="result" id="percentageResult"></div>
-            </div>
-        </div>
-
-        <!-- 14. BMI CALCULATOR -->
-        <div class="card">
-            <div>
-                <h2>BMI Calculator</h2>
-                <input type="number" id="bmiWeight" placeholder="Weight in kg">
-                <input type="number" id="bmiHeight" placeholder="Height in cm">
-            </div>
-
-            <div>
-                <button onclick="calculateBMI()">Calculate BMI</button>
-                <div class="result" id="bmiResult"></div>
-            </div>
-        </div>
-
-        <!-- 15. LOAN CALCULATOR -->
-        <div class="card">
-            <div>
-                <h2>Loan Calculator</h2>
-                <input type="number" id="loanAmount" placeholder="Loan amount">
-                <input type="number" id="loanRate" placeholder="Annual interest %">
-                <input type="number" id="loanYears" placeholder="Loan term in years">
-            </div>
-
-            <div>
-                <button onclick="calculateLoan()">Calculate Loan</button>
-                <div class="result" id="loanResult"></div>
-            </div>
-        </div>
-
-    </section>
-
-    <div class="ad">Advertisement Space</div>
-
-    <section id="about" class="card" style="margin-top: 20px;">
-        <h2>About ToolBox Online</h2>
-
-        <p>
-            ToolBox Online provides lightweight, fast browser-based utilities
-            for students, creators, and professionals. Most tools work directly
-            in your browser for privacy and performance.
-        </p>
-    </section>
+<button class="blue" onclick="updateInvoice()">
+Update Invoice
+</button>
 
 </div>
 
-<footer>
-    © 2026 ToolBox Online · Privacy Policy · Terms
-</footer>
+
+<!-- PREVIEW -->
+
+<div class="card">
+
+<h2>Invoice Preview</h2>
+
+<div class="invoice">
+
+<div class="invoice-top">
+
+<div>
+<h1>INVOICE</h1>
+<p id="previewBusiness">
+Your Business Name
+</p>
+</div>
+
+<div class="meta">
+
+<strong id="previewNumber">
+INV-001
+</strong>
+
+<br>
+
+<span id="previewDate"></span>
+
+<br><br>
+
+<span class="status" id="previewStatus">
+Unpaid
+</span>
+
+</div>
+
+</div>
+
+
+<div class="customer">
+
+<strong>Bill To:</strong>
+
+<div id="previewCustomer">
+Customer Name
+</div>
+
+<div id="previewPhone"></div>
+
+</div>
+
+
+<table>
+
+<thead>
+
+<tr>
+<th>Item</th>
+<th>Qty</th>
+<th>Price</th>
+<th>Total</th>
+</tr>
+
+</thead>
+
+<tbody id="previewItems"></tbody>
+
+</table>
+
+
+<div class="total">
+
+<div>
+<span>Subtotal</span>
+<strong id="subtotal">Rs. 0</strong>
+</div>
+
+<div>
+<span>Discount</span>
+<strong id="discountAmount">Rs. 0</strong>
+</div>
+
+<div>
+<span>Tax</span>
+<strong id="taxAmount">Rs. 0</strong>
+</div>
+
+<div class="grand">
+<span>Total</span>
+<strong id="grandTotal">Rs. 0</strong>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button class="blue" onclick="window.print()">
+🖨️ Print / Save PDF
+</button>
+
+<button class="light" onclick="whatsapp()">
+📱 WhatsApp
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <script>
 
-/* =========================
-   WORD COUNTER
-========================= */
+let itemNumber=0;
 
-function countWords() {
-    const input = document.getElementById("wordText").value.trim();
-    const count = input ? input.split(/\s+/).length : 0;
 
-    document.getElementById("wordResult").textContent =
-        `Words: ${count}`;
+/* TODAY */
+
+function today(){
+
+let d=new Date();
+
+let month=String(d.getMonth()+1).padStart(2,"0");
+
+let day=String(d.getDate()).padStart(2,"0");
+
+return d.getFullYear()+"-"+month+"-"+day;
+
+}
+
+document.getElementById("date").value=today();
+
+
+/* ADD ITEM */
+
+function addItem(name="",qty=1,price=0){
+
+itemNumber++;
+
+let item=document.createElement("div");
+
+item.className="item";
+
+item.id="item"+itemNumber;
+
+item.innerHTML=`
+
+<input
+class="itemName"
+placeholder="Service / Product"
+value="${name}"
+oninput="updateInvoice()">
+
+<input
+class="itemQty"
+type="number"
+value="${qty}"
+min="1"
+oninput="updateInvoice()">
+
+<input
+class="itemPrice"
+type="number"
+value="${price}"
+min="0"
+oninput="updateInvoice()">
+
+<button
+class="remove"
+onclick="removeItem(${itemNumber})">
+×
+</button>
+
+`;
+
+document.getElementById("items").appendChild(item);
+
+updateInvoice();
+
 }
 
 
-/* =========================
-   AGE CALCULATOR
-========================= */
+/* REMOVE */
 
-function calculateAge() {
-    const birthVal = document.getElementById("birthDate").value;
-    const resultEl = document.getElementById("ageResult");
+function removeItem(id){
 
-    if (!birthVal) {
-        resultEl.textContent = "Please select a birth date.";
-        return;
-    }
+let item=document.getElementById("item"+id);
 
-    const birthDate = new Date(birthVal + "T00:00:00");
-    const today = new Date();
+if(item){
+item.remove();
+}
 
-    if (birthDate > today) {
-        resultEl.textContent = "Birth date cannot be in the future.";
-        return;
-    }
+updateInvoice();
 
-    let age = today.getFullYear() - birthDate.getFullYear();
-
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-
-    if (
-        monthDiff < 0 ||
-        (monthDiff === 0 && today.getDate() < birthDate.getDate())
-    ) {
-        age--;
-    }
-
-    resultEl.textContent = `Age: ${age} years old`;
 }
 
 
-/* =========================
-   CHARACTER COUNTER
-========================= */
+/* MONEY */
 
-document.getElementById("charText").addEventListener("input", function () {
-    document.getElementById("charResult").textContent =
-        this.value.length;
+function money(number){
+
+return "Rs. "+
+Number(number).toLocaleString("en-PK");
+
+}
+
+
+/* UPDATE */
+
+function updateInvoice(){
+
+document.getElementById("previewBusiness").textContent=
+
+document.getElementById("business").value
+||"Your Business Name";
+
+
+document.getElementById("previewCustomer").textContent=
+
+document.getElementById("customer").value
+||"Customer Name";
+
+
+document.getElementById("previewPhone").textContent=
+
+document.getElementById("phone").value;
+
+
+document.getElementById("previewNumber").textContent=
+
+document.getElementById("number").value
+||"INV-001";
+
+
+document.getElementById("previewDate").textContent=
+
+document.getElementById("date").value
+||today();
+
+
+document.getElementById("previewStatus").textContent=
+
+document.getElementById("status").value;
+
+
+let subtotal=0;
+
+let html="";
+
+
+document.querySelectorAll(".item").forEach(item=>{
+
+let name=
+item.querySelector(".itemName").value
+||"Item";
+
+let qty=
+Number(item.querySelector(".itemQty").value)
+||0;
+
+let price=
+Number(item.querySelector(".itemPrice").value)
+||0;
+
+let total=qty*price;
+
+subtotal+=total;
+
+html+=`
+
+<tr>
+
+<td>${name}</td>
+
+<td>${qty}</td>
+
+<td>${money(price)}</td>
+
+<td>${money(total)}</td>
+
+</tr>
+
+`;
+
 });
 
 
-/* =========================
-   QR CODE
-========================= */
+document.getElementById("previewItems").innerHTML=html;
 
-function generateQR() {
-    const text = document.getElementById("qrText").value.trim();
-    const box = document.getElementById("qrResult");
 
-    if (!text) {
-        box.textContent = "Please enter text or a URL.";
-        return;
-    }
+let discountRate=
+Number(document.getElementById("discount").value)
+||0;
 
-    box.innerHTML = "";
+let taxRate=
+Number(document.getElementById("tax").value)
+||0;
 
-    const img = document.createElement("img");
 
-    img.width = 160;
-    img.height = 160;
-    img.alt = "Generated QR Code";
+let discount=
+subtotal*discountRate/100;
 
-    img.src =
-        `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(text)}`;
+let taxable=
+subtotal-discount;
 
-    box.appendChild(img);
+let tax=
+taxable*taxRate/100;
+
+let total=
+taxable+tax;
+
+
+document.getElementById("subtotal").textContent=
+money(subtotal);
+
+document.getElementById("discountAmount").textContent=
+money(discount);
+
+document.getElementById("taxAmount").textContent=
+money(tax);
+
+document.getElementById("grandTotal").textContent=
+money(total);
+
 }
 
 
-/* =========================
-   DOWNLOAD HELPER
-========================= */
+/* WHATSAPP */
 
-function downloadBlob(blob, filename) {
-    const url = URL.createObjectURL(blob);
+function whatsapp(){
 
-    const link = document.createElement("a");
+let phone=
+document.getElementById("phone").value
+.replace(/\D/g,"");
 
-    link.href = url;
-    link.download = filename;
+if(phone.startsWith("0")){
+phone="92"+phone.substring(1);
+}
 
-    document.body.appendChild(link);
-    link.click();
+let business=
+document.getElementById("business").value
+||"Business";
 
-    link.remove();
+let customer=
+document.getElementById("customer").value
+||"Customer";
 
-    setTimeout(() => {
-        URL.revokeObjectURL(url);
-    }, 1000);
+let total=
+document.getElementById("grandTotal").textContent;
+
+
+let message=
+"Invoice from "+business+
+"%0ACustomer: "+customer+
+"%0ATotal: "+total;
+
+
+window.open(
+"https://wa.me/"+phone+
+"?text="+message,
+"_blank"
+);
+
 }
 
 
-/* =========================
-   IMAGE LOADER
-========================= */
+/* NEW */
 
-function loadImage(file, callback) {
+function newInvoice(){
 
-    if (!file) {
-        alert("Please select an image.");
-        return;
-    }
+document.getElementById("business").value="";
 
-    const reader = new FileReader();
+document.getElementById("customer").value="";
 
-    reader.onload = function (event) {
+document.getElementById("phone").value="";
 
-        const img = new Image();
+document.getElementById("number").value="INV-001";
 
-        img.onload = function () {
-            callback(img);
-        };
+document.getElementById("date").value=today();
 
-        img.src = event.target.result;
-    };
+document.getElementById("status").value="Unpaid";
 
-    reader.readAsDataURL(file);
+document.getElementById("tax").value="0";
+
+document.getElementById("discount").value="0";
+
+document.getElementById("items").innerHTML="";
+
+itemNumber=0;
+
+addItem();
+
 }
 
 
-/* =========================
-   IMAGE COMPRESSOR
-========================= */
+/* DEFAULT ITEMS */
 
-const qualitySlider =
-    document.getElementById("compressQuality");
+addItem(
+"Welding Gate Fabrication",
+1,
+25000
+);
 
-qualitySlider.addEventListener("input", function () {
+addItem(
+"Paint & Finishing",
+1,
+5000
+);
 
-    document.getElementById("qualityValue").textContent =
-        this.value;
+
+/* LIVE UPDATE */
+
+[
+"business",
+"customer",
+"phone",
+"number",
+"date",
+"status",
+"tax",
+"discount"
+].forEach(id=>{
+
+document.getElementById(id)
+.addEventListener("input",updateInvoice);
+
+document.getElementById(id)
+.addEventListener("change",updateInvoice);
+
 });
 
 
-function compressImage() {
-
-    const file =
-        document.getElementById("compressFile").files[0];
-
-    const result =
-        document.getElementById("compressResult");
-
-    if (!file) {
-        result.textContent = "Please select an image.";
-        return;
-    }
-
-    loadImage(file, function (img) {
-
-        const canvas = document.createElement("canvas");
-
-        canvas.width = img.width;
-        canvas.height = img.height;
-
-        const ctx = canvas.getContext("2d");
-
-        ctx.drawImage(img, 0, 0);
-
-        const quality =
-            Number(document.getElementById("compressQuality").value) / 100;
-
-        canvas.toBlob(function (blob) {
-
-            downloadBlob(blob, "compressed-image.jpg");
-
-            result.textContent =
-                "Compressed image downloaded.";
-
-        }, "image/jpeg", quality);
-
-    });
-}
-
-
-/* =========================
-   IMAGE RESIZER
-========================= */
-
-function resizeImage() {
-
-    const file =
-        document.getElementById("resizeFile").files[0];
-
-    const width =
-        Number(document.getElementById("resizeWidth").value);
-
-    const height =
-        Number(document.getElementById("resizeHeight").value);
-
-    const result =
-        document.getElementById("resizeResult");
-
-    if (!file) {
-        result.textContent = "Please select an image.";
-        return;
-    }
-
-    if (width <= 0 || height <= 0) {
-        result.textContent =
-            "Please enter valid width and height.";
-        return;
-    }
-
-    loadImage(file, function (img) {
-
-        const canvas = document.createElement("canvas");
-
-        canvas.width = width;
-        canvas.height = height;
-
-        const ctx = canvas.getContext("2d");
-
-        ctx.drawImage(
-            img,
-            0,
-            0,
-            width,
-            height
-        );
-
-        canvas.toBlob(function (blob) {
-
-            downloadBlob(blob, "resized-image.png");
-
-            result.textContent =
-                "Resized image downloaded.";
-
-        }, "image/png");
-
-    });
-}
-
-
-/* =========================
-   JPG → PNG
-========================= */
-
-function jpgToPng() {
-
-    const file =
-        document.getElementById("jpgPngFile").files[0];
-
-    const result =
-        document.getElementById("jpgPngResult");
-
-    if (!file) {
-        result.textContent = "Please select a JPG image.";
-        return;
-    }
-
-    loadImage(file, function (img) {
-
-        const canvas =
-            document.createElement("canvas");
-
-        canvas.width = img.width;
-        canvas.height = img.height;
-
-        const ctx = canvas.getContext("2d");
-
-        ctx.drawImage(img, 0, 0);
-
-        canvas.toBlob(function (blob) {
-
-            downloadBlob(
-                blob,
-                "converted-image.png"
-            );
-
-            result.textContent =
-                "PNG image downloaded.";
-
-        }, "image/png");
-
-    });
-}
-
-
-/* =========================
-   PNG → JPG
-========================= */
-
-function pngToJpg() {
-
-    const file =
-        document.getElementById("pngJpgFile").files[0];
-
-    const result =
-        document.getElementById("pngJpgResult");
-
-    if (!file) {
-        result.textContent = "Please select a PNG image.";
-        return;
-    }
-
-    loadImage(file, function (img) {
-
-        const canvas =
-            document.createElement("canvas");
-
-        canvas.width = img.width;
-        canvas.height = img.height;
-
-        const ctx = canvas.getContext("2d");
-
-        /* White background for transparent PNG */
-        ctx.fillStyle = "#ffffff";
-
-        ctx.fillRect(
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
-
-        ctx.drawImage(img, 0, 0);
-
-        canvas.toBlob(function (blob) {
-
-            downloadBlob(
-                blob,
-                "converted-image.jpg"
-            );
-
-            result.textContent =
-                "JPG image downloaded.";
-
-        }, "image/jpeg", 0.92);
-
-    });
-}
-
-
-/* =========================
-   PDF MERGER
-========================= */
-
-async function mergePDFs() {
-
-    const files =
-        Array.from(
-            document.getElementById("pdfFiles").files
-        );
-
-    const result =
-        document.getElementById("pdfResult");
-
-    if (files.length < 2) {
-        result.textContent =
-            "Please select at least 2 PDF files.";
-
-        return;
-    }
-
-    result.textContent =
-        "Merging PDFs...";
-
-    try {
-
-        const mergedPdf =
-            await PDFLib.PDFDocument.create();
-
-        for (const file of files) {
-
-            const bytes =
-                await file.arrayBuffer();
-
-            const pdf =
-                await PDFLib.PDFDocument.load(bytes);
-
-            const pages =
-                await mergedPdf.copyPages(
-                    pdf,
-                    pdf.getPageIndices()
-                );
-
-            pages.forEach(page => {
-                mergedPdf.addPage(page);
-            });
-        }
-
-        const mergedBytes =
-            await mergedPdf.save();
-
-        const blob =
-            new Blob(
-                [mergedBytes],
-                { type: "application/pdf" }
-            );
-
-        downloadBlob(
-            blob,
-            "merged.pdf"
-        );
-
-        result.textContent =
-            "Merged PDF downloaded successfully.";
-
-    } catch (error) {
-
-        console.error(error);
-
-        result.textContent =
-            "Unable to merge these PDF files.";
-    }
-}
-
-
-/* =========================
-   PASSWORD GENERATOR
-========================= */
-
-function generatePassword() {
-
-    const length =
-        Number(
-            document.getElementById("passwordLength").value
-        );
-
-    const output =
-        document.getElementById("passwordOutput");
-
-    const result =
-        document.getElementById("passwordResult");
-
-    const safeLength =
-        Math.max(4, Math.min(100, length || 16));
-
-    const characters =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
-        "abcdefghijklmnopqrstuvwxyz" +
-        "0123456789" +
-        "!@#$%^&*()_+-=[]{}";
-
-    let password = "";
-
-    const randomValues =
-        new Uint32Array(safeLength);
-
-    crypto.getRandomValues(randomValues);
-
-    for (let i = 0; i < safeLength; i++) {
-
-        password +=
-            characters[
-                randomValues[i] %
-                characters.length
-            ];
-    }
-
-    output.value = password;
-
-    result.textContent =
-        "Strong password generated.";
-}
-
-
-function copyPassword() {
-
-    const output =
-        document.getElementById("passwordOutput");
-
-    const result =
-        document.getElementById("passwordResult");
-
-    if (!output.value) {
-
-        result.textContent =
-            "Generate a password first.";
-
-        return;
-    }
-
-    navigator.clipboard.writeText(output.value)
-        .then(function () {
-
-            result.textContent =
-                "Password copied.";
-
-        })
-        .catch(function () {
-
-            output.select();
-            document.execCommand("copy");
-
-            result.textContent =
-                "Password copied.";
-
-        });
-}
-
-
-/* =========================
-   TEXT CASE CONVERTER
-========================= */
-
-function convertUpper() {
-
-    const box =
-        document.getElementById("caseText");
-
-    box.value =
-        box.value.toUpperCase();
-}
-
-
-function convertLower() {
-
-    const box =
-        document.getElementById("caseText");
-
-    box.value =
-        box.value.toLowerCase();
-}
-
-
-function convertTitle() {
-
-    const box =
-        document.getElementById("caseText");
-
-    box.value =
-        box.value
-            .toLowerCase()
-            .replace(/\b\w/g, function (letter) {
-                return letter.toUpperCase();
-            });
-}
-
-
-/* =========================
-   UNIT CONVERTER
-========================= */
-
-function convertUnit() {
-
-    const value =
-        Number(
-            document.getElementById("unitValue").value
-        );
-
-    const type =
-        document.getElementById("unitType").value;
-
-    const result =
-        document.getElementById("unitResult");
-
-    if (!Number.isFinite(value)) {
-
-        result.textContent =
-            "Please enter a valid number.";
-
-        return;
-    }
-
-    let answer;
-
-    switch (type) {
-
-        case "km-mi":
-            answer = value * 0.621371;
-            break;
-
-        case "mi-km":
-            answer = value * 1.609344;
-            break;
-
-        case "kg-lb":
-            answer = value * 2.2046226218;
-            break;
-
-        case "lb-kg":
-            answer = value * 0.45359237;
-            break;
-
-        case "m-ft":
-            answer = value * 3.280839895;
-            break;
-
-        case "ft-m":
-            answer = value * 0.3048;
-            break;
-
-        case "c-f":
-            answer = (value * 9 / 5) + 32;
-            break;
-
-        case "f-c":
-            answer = (value - 32) * 5 / 9;
-            break;
-
-        case "l-gal":
-            answer = value * 0.2641720524;
-            break;
-
-        case "gal-l":
-            answer = value * 3.785411784;
-            break;
-    }
-
-    result.textContent =
-        `Result: ${answer.toFixed(4)}`;
-}
-
-
-/* =========================
-   PERCENTAGE CALCULATOR
-========================= */
-
-function calculatePercentage() {
-
-    const percentage =
-        Number(
-            document.getElementById("percentageValue").value
-        );
-
-    const number =
-        Number(
-            document.getElementById("percentageNumber").value
-        );
-
-    const result =
-        document.getElementById("percentageResult");
-
-    if (
-        !Number.isFinite(percentage) ||
-        !Number.isFinite(number)
-    ) {
-
-        result.textContent =
-            "Please enter both values.";
-
-        return;
-    }
-
-    const answer =
-        (percentage / 100) * number;
-
-    result.textContent =
-        `${percentage}% of ${number} = ${answer}`;
-}
-
-
-/* =========================
-   BMI CALCULATOR
-========================= */
-
-function calculateBMI() {
-
-    const weight =
-        Number(
-            document.getElementById("bmiWeight").value
-        );
-
-    const heightCm =
-        Number(
-            document.getElementById("bmiHeight").value
-        );
-
-    const result =
-        document.getElementById("bmiResult");
-
-    if (
-        weight <= 0 ||
-        heightCm <= 0
-    ) {
-
-        result.textContent =
-            "Please enter valid weight and height.";
-
-        return;
-    }
-
-    const height =
-        heightCm / 100;
-
-    const bmi =
-        weight / (height * height);
-
-    let category;
-
-    if (bmi < 18.5) {
-        category = "Underweight";
-    } else if (bmi < 25) {
-        category = "Normal";
-    } else if (bmi < 30) {
-        category = "Overweight";
-    } else {
-        category = "Obesity";
-    }
-
-    result.innerHTML =
-        `BMI: ${bmi.toFixed(1)}<br>Category: ${category}`;
-}
-
-
-/* =========================
-   LOAN CALCULATOR
-========================= */
-
-function calculateLoan() {
-
-    const amount =
-        Number(
-            document.getElementById("loanAmount").value
-        );
-
-    const annualRate =
-        Number(
-            document.getElementById("loanRate").value
-        );
-
-    const years =
-        Number(
-            document.getElementById("loanYears").value
-        );
-
-    const result =
-        document.getElementById("loanResult");
-
-    if (
-        amount <= 0 ||
-        years <= 0 ||
-        annualRate < 0
-    ) {
-
-        result.textContent =
-            "Please enter valid loan details.";
-
-        return;
-    }
-
-    const months =
-        years * 12;
-
-    const monthlyRate =
-        annualRate / 100 / 12;
-
-    let monthlyPayment;
-
-    if (monthlyRate === 0) {
-
-        monthlyPayment =
-            amount / months;
-
-    } else {
-
-        monthlyPayment =
-            amount *
-            monthlyRate *
-            Math.pow(
-                1 + monthlyRate,
-                months
-            ) /
-            (
-                Math.pow(
-                    1 + monthlyRate,
-                    months
-                ) - 1
-            );
-    }
-
-    const totalPayment =
-        monthlyPayment * months;
-
-    const totalInterest =
-        totalPayment - amount;
-
-    result.innerHTML =
-        `Monthly Payment: ${monthlyPayment.toFixed(2)}<br>` +
-        `Total Payment: ${totalPayment.toFixed(2)}<br>` +
-        `Total Interest: ${totalInterest.toFixed(2)}`;
-}
+updateInvoice();
 
 </script>
 
