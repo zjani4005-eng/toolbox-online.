@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>InvoicePro</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+box-sizing:border-box;
+}
 
 body{
 margin:0;
@@ -17,11 +21,11 @@ color:#172033;
 
 header{
 background:#fff;
-padding:18px 6%;
-display:flex;
-justify-content:space-between;
-align-items:center;
 border-bottom:1px solid #ddd;
+padding:16px 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
 }
 
 .logo{
@@ -30,9 +34,15 @@ font-weight:bold;
 color:#2563eb;
 }
 
+nav{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
 button{
 border:0;
-padding:11px 16px;
+padding:11px 15px;
 border-radius:8px;
 cursor:pointer;
 font-weight:bold;
@@ -48,28 +58,47 @@ background:#16a34a;
 color:white;
 }
 
+.red{
+background:#dc2626;
+color:white;
+}
+
 .light{
 background:#eef2ff;
 color:#2563eb;
 }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:30px 18px;
+.gray{
+background:#eee;
+color:#333;
 }
 
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:25px;
+.container{
+max-width:1150px;
+margin:auto;
+padding:25px 16px;
+}
+
+.hidden{
+display:none!important;
 }
 
 .card{
-background:white;
-padding:22px;
+background:#fff;
 border-radius:16px;
+padding:22px;
 box-shadow:0 5px 20px #0001;
+margin-bottom:20px;
+}
+
+.auth{
+max-width:430px;
+margin:50px auto;
+}
+
+.auth h1{
+text-align:center;
+color:#2563eb;
 }
 
 label{
@@ -79,21 +108,47 @@ font-size:14px;
 margin-top:14px;
 }
 
-input,select{
+input,select,textarea{
 width:100%;
 padding:11px;
 margin-top:6px;
 border:1px solid #ccd3df;
 border-radius:8px;
 outline:none;
+font-family:inherit;
 }
 
-input:focus,select:focus{
+textarea{
+resize:vertical;
+min-height:90px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
 border-color:#2563eb;
 }
 
-.items{
-margin-top:20px;
+.auth button{
+width:100%;
+margin-top:15px;
+}
+
+.auth-switch{
+text-align:center;
+margin-top:15px;
+}
+
+.link{
+color:#2563eb;
+cursor:pointer;
+font-weight:bold;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:22px;
 }
 
 .item{
@@ -114,9 +169,9 @@ padding:10px 13px;
 }
 
 .invoice{
-padding:30px;
+background:#fff;
 border:1px solid #ddd;
-background:white;
+padding:30px;
 min-height:500px;
 }
 
@@ -163,7 +218,7 @@ text-align:left;
 
 .total{
 margin-left:auto;
-width:250px;
+width:270px;
 margin-top:20px;
 }
 
@@ -183,13 +238,76 @@ padding-top:10px!important;
 .actions{
 display:flex;
 gap:10px;
-margin-top:15px;
 flex-wrap:wrap;
+margin-top:15px;
 }
 
 .actions button{
 flex:1;
 min-width:150px;
+}
+
+.history-item{
+background:#fff;
+border:1px solid #ddd;
+border-radius:12px;
+padding:15px;
+margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+}
+
+.history-actions{
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+}
+
+.profile-box{
+max-width:600px;
+}
+
+.message{
+padding:10px;
+border-radius:8px;
+margin-top:10px;
+display:none;
+}
+
+.success{
+background:#dcfce7;
+color:#166534;
+}
+
+.error{
+background:#fee2e2;
+color:#991b1b;
+}
+
+.feedback{
+position:fixed;
+right:18px;
+bottom:18px;
+background:white;
+width:320px;
+max-width:calc(100% - 36px);
+padding:20px;
+border-radius:16px;
+box-shadow:0 8px 30px #0003;
+z-index:1000;
+}
+
+.stars{
+display:flex;
+gap:5px;
+margin:10px 0;
+}
+
+.stars button{
+background:#eee;
+padding:8px;
 }
 
 @media(max-width:800px){
@@ -200,7 +318,13 @@ grid-template-columns:1fr;
 
 }
 
-@media(max-width:550px){
+@media(max-width:600px){
+
+header{
+align-items:flex-start;
+gap:10px;
+flex-direction:column;
+}
 
 .item{
 grid-template-columns:1fr 1fr;
@@ -208,6 +332,10 @@ grid-template-columns:1fr 1fr;
 
 .itemName{
 grid-column:1/-1;
+}
+
+.invoice{
+padding:18px;
 }
 
 .invoice-top{
@@ -218,28 +346,30 @@ flex-direction:column;
 text-align:left;
 }
 
-.invoice{
-padding:18px;
+.history-item{
+flex-direction:column;
+align-items:flex-start;
 }
 
 }
 
 @media print{
 
-body{
-background:white;
-}
-
 header,
 .form,
 .actions,
+.feedback,
+.no-print,
 h2{
 display:none!important;
 }
 
+body{
+background:#fff;
+}
+
 .container{
 padding:0;
-max-width:none;
 }
 
 .grid{
@@ -253,14 +383,207 @@ padding:0;
 
 .invoice{
 border:0;
-padding:20px;
 }
 
 }
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- AUTH -->
+
+<section id="authPage" class="container">
+
+<div class="card auth">
+
+<h1>InvoicePro</h1>
+
+<p style="text-align:center">
+Professional invoices made simple.
+</p>
+
+
+<div id="loginBox">
+
+<h2>Login</h2>
+
+<label>Email</label>
+
+<input
+id="loginEmail"
+type="email"
+placeholder="you@example.com">
+
+
+<label>Password</label>
+
+<input
+id="loginPassword"
+type="password"
+placeholder="Password">
+
+
+<button
+class="blue"
+onclick="loginUser()">
+
+Login
+
+</button>
+
+
+<p class="auth-switch">
+
+Don't have an account?
+
+<span
+class="link"
+onclick="showSignup()">
+
+Sign Up
+
+</span>
+
+</p>
+
+
+<p class="auth-switch">
+
+<span
+class="link"
+onclick="showRecovery()">
+
+Forgot Password?
+
+</span>
+
+</p>
+
+</div>
+
+
+<!-- SIGNUP -->
+
+<div
+id="signupBox"
+class="hidden">
+
+<h2>Create Account</h2>
+
+<label>Name</label>
+
+<input
+id="signupName"
+placeholder="Your Name">
+
+
+<label>Email</label>
+
+<input
+id="signupEmail"
+type="email"
+placeholder="you@example.com">
+
+
+<label>Password</label>
+
+<input
+id="signupPassword"
+type="password"
+placeholder="Minimum 6 characters">
+
+
+<button
+class="blue"
+onclick="signupUser()">
+
+Create Account
+
+</button>
+
+
+<p class="auth-switch">
+
+Already have an account?
+
+<span
+class="link"
+onclick="showLogin()">
+
+Login
+
+</span>
+
+</p>
+
+</div>
+
+
+<!-- RECOVERY -->
+
+<div
+id="recoveryBox"
+class="hidden">
+
+<h2>Account Recovery</h2>
+
+<p>
+Enter your email and we will send you a password reset link.
+</p>
+
+<label>Email</label>
+
+<input
+id="recoveryEmail"
+type="email"
+placeholder="you@example.com">
+
+
+<button
+class="blue"
+onclick="sendRecovery()">
+
+Send Recovery Email
+
+</button>
+
+
+<p class="auth-switch">
+
+<span
+class="link"
+onclick="showLogin()">
+
+Back to Login
+
+</span>
+
+</p>
+
+</div>
+
+
+<div
+id="authMessage"
+class="message">
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- APP -->
+
+<section
+id="appPage"
+class="hidden">
+
 
 <header>
 
@@ -268,14 +591,52 @@ padding:20px;
 InvoicePro
 </div>
 
-<button class="light" onclick="newInvoice()">
-New Invoice
+<nav>
+
+<button
+class="light"
+onclick="showPage('invoicePage')">
+
+Create Invoice
+
 </button>
+
+<button
+class="light"
+onclick="loadHistory()">
+
+History
+
+</button>
+
+<button
+class="light"
+onclick="showSettings()">
+
+Settings
+
+</button>
+
+<button
+class="red"
+onclick="logoutUser()">
+
+Logout
+
+</button>
+
+</nav>
 
 </header>
 
 
+
 <div class="container">
+
+
+<!-- INVOICE PAGE -->
+
+<div id="invoicePage">
 
 <div class="grid">
 
@@ -285,6 +646,7 @@ New Invoice
 <div class="card form">
 
 <h2>Create Invoice</h2>
+
 
 <label>Business Name</label>
 
@@ -332,11 +694,10 @@ type="date">
 </select>
 
 
-<div class="items">
-
 <h3>Items</h3>
 
 <div id="items"></div>
+
 
 <button
 class="light"
@@ -346,18 +707,14 @@ onclick="addItem()">
 
 </button>
 
-</div>
-
 
 <label>Tax (%)</label>
 
 <input
 id="tax"
 type="number"
-placeholder="Tax %"
 value="0"
-min="0"
-step="0.01">
+placeholder="Tax %">
 
 
 <label>Discount (%)</label>
@@ -365,23 +722,32 @@ step="0.01">
 <input
 id="discount"
 type="number"
-placeholder="Discount %"
 value="0"
-min="0"
-step="0.01">
+placeholder="Discount %">
 
 
-<br>
+<div class="actions">
 
 <button
 class="blue"
-onclick="updateInvoice()">
+onclick="saveInvoice()">
 
-Update Invoice
+💾 Save Invoice
+
+</button>
+
+<button
+class="gray"
+onclick="newInvoice()">
+
+New
 
 </button>
 
 </div>
+
+</div>
+
 
 
 <!-- PREVIEW -->
@@ -389,6 +755,7 @@ Update Invoice
 <div class="card">
 
 <h2>Invoice Preview</h2>
+
 
 <div
 class="invoice"
@@ -453,8 +820,11 @@ Customer Name
 <tr>
 
 <th>Item</th>
+
 <th>Quantity</th>
+
 <th>Price</th>
+
 <th>Total</th>
 
 </tr>
@@ -463,7 +833,6 @@ Customer Name
 
 <tbody
 id="previewItems">
-
 </tbody>
 
 </table>
@@ -547,77 +916,717 @@ onclick="printInvoice()">
 </div>
 
 
-<!-- IMAGE GENERATOR -->
+
+<!-- HISTORY -->
+
+<div
+id="historyPage"
+class="hidden">
+
+<div class="card">
+
+<h2>📋 Invoice History</h2>
+
+<div id="historyList">
+
+Loading...
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- SETTINGS -->
+
+<div
+id="settingsPage"
+class="hidden">
+
+<div class="card profile-box">
+
+<h2>⚙️ Account Settings</h2>
+
+<label>Name</label>
+
+<input id="settingsName">
+
+
+<label>Email</label>
+
+<input
+id="settingsEmail"
+disabled>
+
+
+<button
+class="blue"
+onclick="saveProfile()">
+
+Save Name
+
+</button>
+
+
+<hr style="margin:25px 0">
+
+
+<h3>Change Password</h3>
+
+<label>New Password</label>
+
+<input
+id="newPassword"
+type="password"
+placeholder="New password">
+
+
+<button
+class="blue"
+onclick="changePassword()">
+
+Change Password
+
+</button>
+
+
+<div
+id="settingsMessage"
+class="message">
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- FEEDBACK -->
+
+<div
+id="feedbackBox"
+class="feedback hidden">
+
+<h3>⭐ How is InvoicePro?</h3>
+
+<p>
+Please rate your experience.
+</p>
+
+<div class="stars">
+
+<button onclick="setRating(1)">⭐</button>
+<button onclick="setRating(2)">⭐</button>
+<button onclick="setRating(3)">⭐</button>
+<button onclick="setRating(4)">⭐</button>
+<button onclick="setRating(5)">⭐</button>
+
+</div>
+
+
+<textarea
+id="feedbackText"
+placeholder="Your feedback...">
+</textarea>
+
+
+<br><br>
+
+<button
+class="blue"
+onclick="submitFeedback()">
+
+Send
+
+</button>
+
+<button
+class="gray"
+onclick="closeFeedback()">
+
+Later
+
+</button>
+
+</div>
+
+
+
+<!-- LIBRARIES -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
 </script>
 
+<script src="config.js"></script>
+
+
 
 <script>
 
+let currentUser=null;
+
 let itemNumber=0;
 
+let selectedRating=0;
 
-/* DATE */
+let editingInvoiceId=null;
+
+
+/* ==========================
+AUTH UI
+========================== */
+
+function showLogin(){
+
+document.getElementById("loginBox")
+.classList.remove("hidden");
+
+document.getElementById("signupBox")
+.classList.add("hidden");
+
+document.getElementById("recoveryBox")
+.classList.add("hidden");
+
+}
+
+function showSignup(){
+
+document.getElementById("loginBox")
+.classList.add("hidden");
+
+document.getElementById("signupBox")
+.classList.remove("hidden");
+
+document.getElementById("recoveryBox")
+.classList.add("hidden");
+
+}
+
+function showRecovery(){
+
+document.getElementById("loginBox")
+.classList.add("hidden");
+
+document.getElementById("signupBox")
+.classList.add("hidden");
+
+document.getElementById("recoveryBox")
+.classList.remove("hidden");
+
+}
+
+
+function authMessage(text,type="success"){
+
+let box=
+document.getElementById(
+"authMessage"
+);
+
+box.textContent=text;
+
+box.className=
+"message "+type;
+
+box.style.display="block";
+
+}
+
+
+/* ==========================
+SIGN UP
+========================== */
+
+async function signupUser(){
+
+let name=
+document.getElementById(
+"signupName"
+).value.trim();
+
+let email=
+document.getElementById(
+"signupEmail"
+).value.trim();
+
+let password=
+document.getElementById(
+"signupPassword"
+).value;
+
+
+if(!name||!email||!password){
+
+authMessage(
+"Please fill all fields.",
+"error"
+);
+
+return;
+
+}
+
+
+if(password.length<6){
+
+authMessage(
+"Password must be at least 6 characters.",
+"error"
+);
+
+return;
+
+}
+
+
+const {
+data,
+error
+}=
+await supabaseClient.auth.signUp({
+
+email:email,
+
+password:password,
+
+options:{
+data:{
+name:name
+}
+}
+
+});
+
+
+if(error){
+
+authMessage(
+error.message,
+"error"
+);
+
+return;
+
+}
+
+
+authMessage(
+"Account created. Check your email if email confirmation is enabled.",
+"success"
+);
+
+}
+
+
+/* ==========================
+LOGIN
+========================== */
+
+async function loginUser(){
+
+let email=
+document.getElementById(
+"loginEmail"
+).value.trim();
+
+let password=
+document.getElementById(
+"loginPassword"
+).value;
+
+
+if(!email||!password){
+
+authMessage(
+"Enter email and password.",
+"error"
+);
+
+return;
+
+}
+
+
+const {
+data,
+error
+}=
+await supabaseClient.auth.signInWithPassword({
+
+email:email,
+
+password:password
+
+});
+
+
+if(error){
+
+authMessage(
+error.message,
+"error"
+);
+
+return;
+
+}
+
+}
+
+
+/* ==========================
+RECOVERY
+========================== */
+
+async function sendRecovery(){
+
+let email=
+document.getElementById(
+"recoveryEmail"
+).value.trim();
+
+
+if(!email){
+
+authMessage(
+"Enter your email.",
+"error"
+);
+
+return;
+
+}
+
+
+const {
+error
+}=
+await supabaseClient.auth.resetPasswordForEmail(
+email,
+{
+redirectTo:
+window.location.origin+
+window.location.pathname
+}
+);
+
+
+if(error){
+
+authMessage(
+error.message,
+"error"
+);
+
+return;
+
+}
+
+
+authMessage(
+"Recovery email sent. Check your inbox.",
+"success"
+);
+
+}
+
+
+/* ==========================
+LOGOUT
+========================== */
+
+async function logoutUser(){
+
+await supabaseClient.auth.signOut();
+
+currentUser=null;
+
+showAuth();
+
+}
+
+
+/* ==========================
+AUTH STATE
+========================== */
+
+function showAuth(){
+
+document.getElementById(
+"authPage"
+).classList.remove("hidden");
+
+document.getElementById(
+"appPage"
+).classList.add("hidden");
+
+}
+
+
+async function showApp(){
+
+document.getElementById(
+"authPage"
+).classList.add("hidden");
+
+document.getElementById(
+"appPage"
+).classList.remove("hidden");
+
+await loadProfile();
+
+newInvoice();
+
+}
+
+
+/* ==========================
+PROFILE
+========================== */
+
+async function loadProfile(){
+
+const {
+data,
+error
+}=
+await supabaseClient
+.from("profiles")
+.select("*")
+.eq("id",currentUser.id)
+.single();
+
+
+if(data){
+
+document.getElementById(
+"settingsName"
+).value=
+data.name||"";
+
+document.getElementById(
+"settingsEmail"
+).value=
+data.email||
+currentUser.email;
+
+}
+
+}
+
+
+async function saveProfile(){
+
+let name=
+document.getElementById(
+"settingsName"
+).value.trim();
+
+
+const {
+error
+}=
+await supabaseClient
+.from("profiles")
+.update({
+name:name
+})
+.eq("id",currentUser.id);
+
+
+let box=
+document.getElementById(
+"settingsMessage"
+);
+
+
+if(error){
+
+box.textContent=
+error.message;
+
+box.className=
+"message error";
+
+}else{
+
+box.textContent=
+"Profile updated.";
+
+box.className=
+"message success";
+
+}
+
+box.style.display="block";
+
+}
+
+
+async function changePassword(){
+
+let password=
+document.getElementById(
+"newPassword"
+).value;
+
+
+if(password.length<6){
+
+alert(
+"Password must be at least 6 characters."
+);
+
+return;
+
+}
+
+
+const {
+error
+}=
+await supabaseClient.auth.updateUser({
+password:password
+});
+
+
+if(error){
+
+alert(error.message);
+
+}else{
+
+alert(
+"Password changed successfully."
+);
+
+document.getElementById(
+"newPassword"
+).value="";
+
+}
+
+}
+
+
+/* ==========================
+PAGES
+========================== */
+
+function showPage(page){
+
+document.getElementById(
+"invoicePage"
+).classList.add("hidden");
+
+document.getElementById(
+"historyPage"
+).classList.add("hidden");
+
+document.getElementById(
+"settingsPage"
+).classList.add("hidden");
+
+
+document.getElementById(
+page
+).classList.remove("hidden");
+
+}
+
+
+function showSettings(){
+
+showPage("settingsPage");
+
+loadProfile();
+
+}
+
+
+/* ==========================
+DATE
+========================== */
 
 function today(){
 
 let d=new Date();
 
 let month=
-String(d.getMonth()+1).padStart(2,"0");
+String(d.getMonth()+1)
+.padStart(2,"0");
 
 let day=
-String(d.getDate()).padStart(2,"0");
+String(d.getDate())
+.padStart(2,"0");
 
-return d.getFullYear()
-+"-"+month
-+"-"+day;
+return d.getFullYear()+
+"-"+month+
+"-"+day;
 
 }
 
-document.getElementById("date").value=today();
 
+/* ==========================
+ITEM
+========================== */
 
-/* ADD ITEM */
-
-function addItem(){
+function addItem(
+name="",
+qty="",
+price=""
+){
 
 itemNumber++;
 
-let item=document.createElement("div");
+
+let item=
+document.createElement("div");
 
 item.className="item";
 
-item.id="item"+itemNumber;
+item.id=
+"item"+itemNumber;
+
 
 item.innerHTML=`
 
 <input
 class="itemName"
-placeholder="Item Name / Service">
+placeholder="Item Name / Service"
+value="${escapeAttr(name)}">
 
 <input
 class="itemQty"
 type="number"
 min="1"
-placeholder="Quantity">
+placeholder="Quantity"
+value="${qty}">
 
 <input
 class="itemPrice"
 type="number"
 min="0"
-placeholder="Price">
+placeholder="Price"
+value="${price}">
 
 <button
 class="remove"
 onclick="removeItem(${itemNumber})">
-
 ×
-
 </button>
 
 `;
+
 
 document
 .getElementById("items")
@@ -641,8 +1650,6 @@ updateInvoice();
 }
 
 
-/* REMOVE ITEM */
-
 function removeItem(id){
 
 let item=
@@ -651,7 +1658,9 @@ document.getElementById(
 );
 
 if(item){
+
 item.remove();
+
 }
 
 updateInvoice();
@@ -659,23 +1668,65 @@ updateInvoice();
 }
 
 
-/* MONEY */
+/* ==========================
+NEW INVOICE
+========================== */
 
-function money(number){
+function newInvoice(){
 
-return "Rs. "+
-Number(number)
-.toLocaleString(
-"en-PK",
-{
-maximumFractionDigits:2
+editingInvoiceId=null;
+
+document.getElementById(
+"business"
+).value="";
+
+document.getElementById(
+"customer"
+).value="";
+
+document.getElementById(
+"phone"
+).value="";
+
+document.getElementById(
+"number"
+).value=
+"INV-001";
+
+document.getElementById(
+"date"
+).value=
+today();
+
+document.getElementById(
+"status"
+).value=
+"Unpaid";
+
+document.getElementById(
+"tax"
+).value="0";
+
+document.getElementById(
+"discount"
+).value="0";
+
+document.getElementById(
+"items"
+).innerHTML="";
+
+itemNumber=0;
+
+addItem();
+
+updateInvoice();
+
 }
-);
-
-}
 
 
-/* UPDATE */
+/* ==========================
+UPDATE PREVIEW
+========================== */
 
 function updateInvoice(){
 
@@ -741,6 +1792,8 @@ let subtotal=0;
 
 let html="";
 
+let items=[];
+
 
 document
 .querySelectorAll(".item")
@@ -749,26 +1802,37 @@ document
 let name=
 item.querySelector(
 ".itemName"
-).value
-||"Item";
+).value;
 
 let qty=
 Number(
 item.querySelector(
 ".itemQty"
 ).value
-)
-||0;
+)||0;
 
 let price=
 Number(
 item.querySelector(
 ".itemPrice"
 ).value
-)
-||0;
+)||0;
 
-let total=qty*price;
+let total=
+qty*price;
+
+
+if(name||qty||price){
+
+items.push({
+name:name,
+qty:qty,
+price:price,
+total:total
+});
+
+}
+
 
 subtotal+=total;
 
@@ -778,20 +1842,14 @@ html+=`
 <tr>
 
 <td>
-${escapeHTML(name)}
+${escapeHTML(name||"Item")}
 </td>
 
-<td>
-${qty}
-</td>
+<td>${qty}</td>
 
-<td>
-${money(price)}
-</td>
+<td>${money(price)}</td>
 
-<td>
-${money(total)}
-</td>
+<td>${money(total)}</td>
 
 </tr>
 
@@ -810,8 +1868,7 @@ Number(
 document.getElementById(
 "discount"
 ).value
-)
-||0;
+)||0;
 
 
 let taxRate=
@@ -819,8 +1876,7 @@ Number(
 document.getElementById(
 "tax"
 ).value
-)
-||0;
+)||0;
 
 
 let discount=
@@ -867,35 +1923,548 @@ money(total);
 }
 
 
-/* SAFE TEXT */
+function money(number){
+
+return "Rs. "+
+Number(number)
+.toLocaleString(
+"en-PK",
+{
+maximumFractionDigits:2
+}
+);
+
+}
+
 
 function escapeHTML(text){
 
 return String(text)
-
 .replaceAll("&","&amp;")
-
 .replaceAll("<","&lt;")
-
 .replaceAll(">","&gt;")
-
 .replaceAll('"',"&quot;")
-
 .replaceAll("'","&#039;");
 
 }
 
 
-/* DOWNLOAD PICTURE */
+function escapeAttr(text){
+
+return String(text||"")
+.replaceAll("&","&amp;")
+.replaceAll('"',"&quot;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;");
+
+}
+
+
+/* ==========================
+GET CURRENT ITEMS
+========================== */
+
+function getItems(){
+
+let items=[];
+
+
+document
+.querySelectorAll(".item")
+.forEach(item=>{
+
+let name=
+item.querySelector(
+".itemName"
+).value.trim();
+
+let qty=
+Number(
+item.querySelector(
+".itemQty"
+).value
+)||0;
+
+let price=
+Number(
+item.querySelector(
+".itemPrice"
+).value
+)||0;
+
+
+if(name){
+
+items.push({
+
+name:name,
+
+qty:qty,
+
+price:price,
+
+total:qty*price
+
+});
+
+}
+
+});
+
+
+return items;
+
+}
+
+
+/* ==========================
+SAVE INVOICE
+========================== */
+
+async function saveInvoice(){
+
+if(!currentUser){
+
+alert(
+"Please login first."
+);
+
+return;
+
+}
+
+
+let items=getItems();
+
+
+if(items.length===0){
+
+alert(
+"Please add at least one item."
+);
+
+return;
+
+}
+
+
+let subtotal=items.reduce(
+(sum,item)=>
+sum+item.total,
+0
+);
+
+
+let taxRate=
+Number(
+document.getElementById(
+"tax"
+).value
+)||0;
+
+
+let discountRate=
+Number(
+document.getElementById(
+"discount"
+).value
+)||0;
+
+
+let discount=
+subtotal*
+discountRate/100;
+
+
+let tax=
+(subtotal-discount)*
+taxRate/100;
+
+
+let total=
+subtotal-discount+tax;
+
+
+let invoiceData={
+
+user_id:currentUser.id,
+
+invoice_number:
+document.getElementById(
+"number"
+).value||"INV-001",
+
+business_name:
+document.getElementById(
+"business"
+).value,
+
+customer_name:
+document.getElementById(
+"customer"
+).value,
+
+customer_phone:
+document.getElementById(
+"phone"
+).value,
+
+invoice_date:
+document.getElementById(
+"date"
+).value,
+
+payment_status:
+document.getElementById(
+"status"
+).value,
+
+tax:taxRate,
+
+discount:discountRate,
+
+total:total,
+
+items:items
+
+};
+
+
+let result;
+
+
+if(editingInvoiceId){
+
+result=
+await supabaseClient
+.from("invoices")
+.update(invoiceData)
+.eq("id",editingInvoiceId)
+.eq("user_id",currentUser.id);
+
+}else{
+
+result=
+await supabaseClient
+.from("invoices")
+.insert(invoiceData);
+
+}
+
+
+if(result.error){
+
+alert(
+"Invoice save nahi hua: "+
+result.error.message
+);
+
+return;
+
+}
+
+
+alert(
+"Invoice successfully saved."
+);
+
+
+loadHistory();
+
+}
+
+
+/* ==========================
+HISTORY
+========================== */
+
+async function loadHistory(){
+
+showPage("historyPage");
+
+
+let list=
+document.getElementById(
+"historyList"
+);
+
+
+list.innerHTML=
+"Loading...";
+
+
+const {
+data,
+error
+}=
+await supabaseClient
+.from("invoices")
+.select("*")
+.eq("user_id",currentUser.id)
+.order("created_at",{ascending:false});
+
+
+if(error){
+
+list.innerHTML=
+"Error: "+
+escapeHTML(error.message);
+
+return;
+
+}
+
+
+if(!data||data.length===0){
+
+list.innerHTML=
+"<p>No invoices yet.</p>";
+
+return;
+
+}
+
+
+list.innerHTML="";
+
+
+data.forEach(invoice=>{
+
+let div=
+document.createElement("div");
+
+div.className=
+"history-item";
+
+
+div.innerHTML=`
+
+<div>
+
+<strong>
+${escapeHTML(
+invoice.invoice_number
+)}
+</strong>
+
+<br>
+
+${escapeHTML(
+invoice.customer_name||"No customer"
+)}
+
+<br>
+
+<small>
+${escapeHTML(
+invoice.invoice_date||""
+)}
+</small>
+
+<br>
+
+<strong>
+${money(invoice.total)}
+</strong>
+
+</div>
+
+
+<div class="history-actions">
+
+<button
+class="light"
+onclick="openInvoice('${invoice.id}')">
+
+Open
+
+</button>
+
+<button
+class="red"
+onclick="deleteInvoice('${invoice.id}')">
+
+Delete
+
+</button>
+
+</div>
+
+`;
+
+
+list.appendChild(div);
+
+});
+
+}
+
+
+/* ==========================
+OPEN HISTORY INVOICE
+========================== */
+
+async function openInvoice(id){
+
+const {
+data,
+error
+}=
+await supabaseClient
+.from("invoices")
+.select("*")
+.eq("id",id)
+.eq("user_id",currentUser.id)
+.single();
+
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+
+editingInvoiceId=
+data.id;
+
+
+document.getElementById(
+"business"
+).value=
+data.business_name||"";
+
+
+document.getElementById(
+"customer"
+).value=
+data.customer_name||"";
+
+
+document.getElementById(
+"phone"
+).value=
+data.customer_phone||"";
+
+
+document.getElementById(
+"number"
+).value=
+data.invoice_number||"";
+
+
+document.getElementById(
+"date"
+).value=
+data.invoice_date||today();
+
+
+document.getElementById(
+"status"
+).value=
+data.payment_status||"Unpaid";
+
+
+document.getElementById(
+"tax"
+).value=
+data.tax||0;
+
+
+document.getElementById(
+"discount"
+).value=
+data.discount||0;
+
+
+document.getElementById(
+"items"
+).innerHTML="";
+
+
+itemNumber=0;
+
+
+(data.items||[])
+.forEach(item=>{
+
+addItem(
+item.name,
+item.qty,
+item.price
+);
+
+});
+
+
+if((data.items||[]).length===0){
+
+addItem();
+
+}
+
+
+updateInvoice();
+
+showPage("invoicePage");
+
+}
+
+
+/* ==========================
+DELETE
+========================== */
+
+async function deleteInvoice(id){
+
+if(!confirm(
+"Delete this invoice?"
+)){
+
+return;
+
+}
+
+
+const {
+error
+}=
+await supabaseClient
+.from("invoices")
+.delete()
+.eq("id",id)
+.eq("user_id",currentUser.id);
+
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+
+loadHistory();
+
+}
+
+
+/* ==========================
+PICTURE
+========================== */
 
 async function downloadPicture(){
 
 updateInvoice();
 
+
 if(typeof html2canvas==="undefined"){
 
 alert(
-"Image system load nahi hua. Internet connection check karein."
+"Image system load nahi hua."
 );
 
 return;
@@ -905,13 +2474,11 @@ return;
 
 try{
 
-const invoice=
-document.getElementById("invoice");
-
-
 const canvas=
 await html2canvas(
-invoice,
+document.getElementById(
+"invoice"
+),
 {
 scale:3,
 backgroundColor:"#ffffff",
@@ -924,15 +2491,13 @@ const link=
 document.createElement("a");
 
 
-let invoiceNumber=
+link.download=
+(
 document.getElementById(
 "number"
 ).value
-||"invoice";
-
-
-link.download=
-invoiceNumber+".png";
+||"invoice"
+)+".png";
 
 
 link.href=
@@ -947,14 +2512,17 @@ link.click();
 
 link.remove();
 
-}
 
-catch(error){
+trackEvent(
+"picture_download"
+);
+
+}catch(error){
 
 console.error(error);
 
 alert(
-"Picture download nahi ho saki. Dobara try karein."
+"Picture download nahi ho saki."
 );
 
 }
@@ -962,101 +2530,188 @@ alert(
 }
 
 
-/* PRINT / PDF */
+/* ==========================
+PRINT
+========================== */
 
 function printInvoice(){
 
 updateInvoice();
+
+trackEvent(
+"print_pdf"
+);
 
 window.print();
 
 }
 
 
-/* NEW INVOICE */
+/* ==========================
+ANALYTICS
+========================== */
 
-function newInvoice(){
+async function trackEvent(eventName){
 
-document.getElementById(
-"business"
-).value="";
+if(!currentUser){
 
-document.getElementById(
-"customer"
-).value="";
-
-document.getElementById(
-"phone"
-).value="";
-
-document.getElementById(
-"number"
-).value="INV-001";
-
-document.getElementById(
-"date"
-).value=today();
-
-document.getElementById(
-"status"
-).value="Unpaid";
-
-document.getElementById(
-"tax"
-).value="0";
-
-document.getElementById(
-"discount"
-).value="0";
-
-
-document.getElementById(
-"items"
-).innerHTML="";
-
-
-itemNumber=0;
-
-addItem();
+return;
 
 }
 
 
-/* LIVE UPDATE */
+await supabaseClient
+.from("analytics_events")
+.insert({
 
-[
-"business",
-"customer",
-"phone",
-"number",
-"date",
-"status",
-"tax",
-"discount"
+user_id:currentUser.id,
 
-].forEach(id=>{
+event_name:eventName
 
-let element=
-document.getElementById(id);
+});
 
-element.addEventListener(
-"input",
-updateInvoice
+}
+
+
+/* ==========================
+FEEDBACK
+========================== */
+
+function setRating(rating){
+
+selectedRating=rating;
+
+
+document
+.querySelectorAll(
+".stars button"
+)
+.forEach(
+(button,index)=>{
+
+button.style.opacity=
+index<rating?"1":"0.35";
+
+});
+
+}
+
+
+function closeFeedback(){
+
+document.getElementById(
+"feedbackBox"
+).classList.add("hidden");
+
+}
+
+
+async function submitFeedback(){
+
+if(!selectedRating){
+
+alert(
+"Please select a rating."
 );
 
-element.addEventListener(
-"change",
-updateInvoice
-);
+return;
+
+}
+
+
+let message=
+document.getElementById(
+"feedbackText"
+).value;
+
+
+const {
+error
+}=
+await supabaseClient
+.from("feedback")
+.insert({
+
+user_id:currentUser.id,
+
+rating:selectedRating,
+
+message:message
 
 });
 
 
-/* ONE EMPTY ITEM */
+if(error){
 
-addItem();
+alert(error.message);
 
-updateInvoice();
+return;
+
+}
+
+
+alert(
+"Thank you for your feedback!"
+);
+
+
+closeFeedback();
+
+}
+
+
+/* ==========================
+START
+========================== */
+
+async function startApp(){
+
+const {
+data
+}=
+await supabaseClient.auth.getSession();
+
+
+if(data.session){
+
+currentUser=
+data.session.user;
+
+await showApp();
+
+}else{
+
+showAuth();
+
+}
+
+
+supabaseClient.auth.onAuthStateChange(
+async(event,session)=>{
+
+if(session){
+
+currentUser=
+session.user;
+
+await showApp();
+
+}else{
+
+currentUser=null;
+
+showAuth();
+
+}
+
+}
+
+);
+
+}
+
+
+startApp();
 
 </script>
 
