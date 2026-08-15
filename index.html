@@ -48,11 +48,6 @@ background:#eef2ff;
 color:#2563eb;
 }
 
-.green{
-background:#16a34a;
-color:#fff;
-}
-
 .container{
 max-width:1100px;
 margin:auto;
@@ -85,11 +80,20 @@ padding:11px;
 margin-top:6px;
 border:1px solid #ccd3df;
 border-radius:8px;
+outline:none;
+}
+
+input:focus,select:focus{
+border-color:#2563eb;
+}
+
+.items{
+margin-top:20px;
 }
 
 .item{
 display:grid;
-grid-template-columns:2fr .7fr 1fr auto;
+grid-template-columns:2fr .8fr 1fr auto;
 gap:7px;
 margin-bottom:8px;
 }
@@ -101,6 +105,7 @@ margin:0;
 .remove{
 background:#fee2e2;
 color:#b91c1c;
+padding:10px 13px;
 }
 
 .invoice{
@@ -167,25 +172,39 @@ padding:6px;
 border-top:2px solid #172033;
 font-size:20px;
 font-weight:bold;
+padding-top:10px!important;
 }
 
 .actions{
 display:flex;
-gap:8px;
+gap:10px;
 margin-top:15px;
 flex-wrap:wrap;
 }
 
+.download{
+background:#16a34a;
+color:white;
+width:100%;
+font-size:16px;
+}
+
 @media(max-width:800px){
+
 .grid{
 grid-template-columns:1fr;
 }
+
 }
 
 @media(max-width:550px){
 
 .item{
 grid-template-columns:1fr 1fr;
+}
+
+.itemName{
+grid-column:1/-1;
 }
 
 .invoice-top{
@@ -246,68 +265,122 @@ New Invoice
 <div class="grid">
 
 
-<!-- FORM -->
+<!-- LEFT SIDE -->
 
 <div class="card form">
 
 <h2>Create Invoice</h2>
 
 <label>Business Name</label>
-<input id="business" placeholder="Your Business Name">
+
+<input
+id="business"
+placeholder="Your Business Name">
+
 
 <label>Customer Name</label>
-<input id="customer" placeholder="Customer Name">
+
+<input
+id="customer"
+placeholder="Customer Name">
+
 
 <label>Customer Phone</label>
-<input id="phone" placeholder="03XXXXXXXXX">
+
+<input
+id="phone"
+placeholder="03XXXXXXXXX">
+
 
 <label>Invoice Number</label>
-<input id="number" value="INV-001">
+
+<input
+id="number"
+value="INV-001">
+
 
 <label>Date</label>
-<input id="date" type="date">
+
+<input
+id="date"
+type="date">
+
 
 <label>Payment Status</label>
 
 <select id="status">
+
 <option>Unpaid</option>
+
 <option>Paid</option>
+
 <option>Pending</option>
+
 </select>
 
+
+<div class="items">
 
 <h3>Items</h3>
 
 <div id="items"></div>
 
-<button class="light" onclick="addItem()">
+<button
+class="light"
+onclick="addItem()">
+
 + Add Item
-</button>
 
-
-<label>Tax %</label>
-<input id="tax" type="number" value="0">
-
-
-<label>Discount %</label>
-<input id="discount" type="number" value="0">
-
-<br><br>
-
-<button class="blue" onclick="updateInvoice()">
-Update Invoice
 </button>
 
 </div>
 
 
-<!-- PREVIEW -->
+<label>Tax (%)</label>
+
+<input
+id="tax"
+type="number"
+placeholder="Tax %"
+value="0"
+min="0"
+step="0.01">
+
+
+<label>Discount (%)</label>
+
+<input
+id="discount"
+type="number"
+placeholder="Discount %"
+value="0"
+min="0"
+step="0.01">
+
+
+<br>
+
+<button
+class="blue"
+onclick="updateInvoice()">
+
+Update Invoice
+
+</button>
+
+</div>
+
+
+<!-- RIGHT SIDE -->
 
 <div class="card">
 
 <h2>Invoice Preview</h2>
 
-<div class="invoice" id="invoice">
+<div
+class="invoice"
+id="invoice">
+
 
 <div class="invoice-top">
 
@@ -321,6 +394,7 @@ Your Business Name
 
 </div>
 
+
 <div class="meta">
 
 <strong id="previewNumber">
@@ -333,8 +407,12 @@ INV-001
 
 <br><br>
 
-<span class="status" id="previewStatus">
+<span
+class="status"
+id="previewStatus">
+
 Unpaid
+
 </span>
 
 </div>
@@ -362,15 +440,21 @@ Customer Name
 <tr>
 
 <th>Item</th>
-<th>Qty</th>
+
+<th>Quantity</th>
+
 <th>Price</th>
+
 <th>Total</th>
 
 </tr>
 
 </thead>
 
-<tbody id="previewItems"></tbody>
+<tbody
+id="previewItems">
+
+</tbody>
 
 </table>
 
@@ -378,42 +462,62 @@ Customer Name
 <div class="total">
 
 <div>
+
 <span>Subtotal</span>
-<strong id="subtotal">Rs. 0</strong>
+
+<strong id="subtotal">
+Rs. 0
+</strong>
+
 </div>
 
+
 <div>
+
 <span>Discount</span>
-<strong id="discountAmount">Rs. 0</strong>
+
+<strong id="discountAmount">
+Rs. 0
+</strong>
+
 </div>
 
+
 <div>
+
 <span>Tax</span>
-<strong id="taxAmount">Rs. 0</strong>
+
+<strong id="taxAmount">
+Rs. 0
+</strong>
+
 </div>
+
 
 <div class="grand">
+
 <span>Total</span>
-<strong id="grandTotal">Rs. 0</strong>
+
+<strong id="grandTotal">
+Rs. 0
+</strong>
+
 </div>
 
 </div>
+
 
 </div>
 
 
 <div class="actions">
 
-<button class="blue" onclick="downloadImage()">
-⬇️ Download Image
-</button>
+<button
+class="download"
+onclick="downloadPicture()">
 
-<button class="green" onclick="shareImage()">
-📱 Share Invoice Image
-</button>
+🖼️ Download Picture
 
-<button class="light" onclick="window.print()">
-🖨️ Print / PDF
 </button>
 
 </div>
@@ -425,9 +529,10 @@ Customer Name
 </div>
 
 
-<!-- html2canvas -->
+<!-- HTML2CANVAS -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+</script>
 
 
 <script>
@@ -435,17 +540,21 @@ Customer Name
 let itemNumber=0;
 
 
-/* DATE */
+/* TODAY */
 
 function today(){
 
 let d=new Date();
 
-let month=String(d.getMonth()+1).padStart(2,"0");
+let month=
+String(d.getMonth()+1).padStart(2,"0");
 
-let day=String(d.getDate()).padStart(2,"0");
+let day=
+String(d.getDate()).padStart(2,"0");
 
-return d.getFullYear()+"-"+month+"-"+day;
+return d.getFullYear()
++"-"+month
++"-"+day;
 
 }
 
@@ -454,7 +563,7 @@ document.getElementById("date").value=today();
 
 /* ADD ITEM */
 
-function addItem(name="",qty=1,price=0){
+function addItem(){
 
 itemNumber++;
 
@@ -468,48 +577,65 @@ item.innerHTML=`
 
 <input
 class="itemName"
-placeholder="Item / Service"
-value="${name}">
+placeholder="Item Name / Service">
 
 <input
 class="itemQty"
 type="number"
-value="${qty}"
-min="1">
+min="1"
+placeholder="Quantity">
 
 <input
 class="itemPrice"
 type="number"
-value="${price}"
-min="0">
+min="0"
+placeholder="Price">
 
 <button
 class="remove"
 onclick="removeItem(${itemNumber})">
+
 ×
+
 </button>
 
 `;
 
-document.getElementById("items").appendChild(item);
+document
+.getElementById("items")
+.appendChild(item);
 
-item.querySelectorAll("input").forEach(input=>{
-input.addEventListener("input",updateInvoice);
+
+item
+.querySelectorAll("input")
+.forEach(input=>{
+
+input.addEventListener(
+"input",
+updateInvoice
+);
+
 });
+
 
 updateInvoice();
 
 }
 
 
-/* REMOVE */
+/* REMOVE ITEM */
 
 function removeItem(id){
 
-let item=document.getElementById("item"+id);
+let item=
+document.getElementById(
+"item"+id
+);
 
 if(item){
+
 item.remove();
+
 }
 
 updateInvoice();
@@ -522,7 +648,13 @@ updateInvoice();
 function money(number){
 
 return "Rs. "+
-Number(number).toLocaleString("en-PK");
+Number(number)
+.toLocaleString(
+"en-PK",
+{
+maximumFractionDigits:2
+}
+);
 
 }
 
@@ -531,38 +663,62 @@ Number(number).toLocaleString("en-PK");
 
 function updateInvoice(){
 
-document.getElementById("previewBusiness").textContent=
+document.getElementById(
+"previewBusiness"
+).textContent=
 
-document.getElementById("business").value
+document.getElementById(
+"business"
+).value
 ||"Your Business Name";
 
 
-document.getElementById("previewCustomer").textContent=
+document.getElementById(
+"previewCustomer"
+).textContent=
 
-document.getElementById("customer").value
+document.getElementById(
+"customer"
+).value
 ||"Customer Name";
 
 
-document.getElementById("previewPhone").textContent=
+document.getElementById(
+"previewPhone"
+).textContent=
 
-document.getElementById("phone").value;
+document.getElementById(
+"phone"
+).value;
 
 
-document.getElementById("previewNumber").textContent=
+document.getElementById(
+"previewNumber"
+).textContent=
 
-document.getElementById("number").value
+document.getElementById(
+"number"
+).value
 ||"INV-001";
 
 
-document.getElementById("previewDate").textContent=
+document.getElementById(
+"previewDate"
+).textContent=
 
-document.getElementById("date").value
+document.getElementById(
+"date"
+).value
 ||today();
 
 
-document.getElementById("previewStatus").textContent=
+document.getElementById(
+"previewStatus"
+).textContent=
 
-document.getElementById("status").value;
+document.getElementById(
+"status"
+).value;
 
 
 let subtotal=0;
@@ -570,18 +726,30 @@ let subtotal=0;
 let html="";
 
 
-document.querySelectorAll(".item").forEach(item=>{
+document
+.querySelectorAll(".item")
+.forEach(item=>{
 
 let name=
-item.querySelector(".itemName").value
+item.querySelector(
+".itemName"
+).value
 ||"Item";
 
 let qty=
-Number(item.querySelector(".itemQty").value)
+Number(
+item.querySelector(
+".itemQty"
+).value
+)
 ||0;
 
 let price=
-Number(item.querySelector(".itemPrice").value)
+Number(
+item.querySelector(
+".itemPrice"
+).value
+)
 ||0;
 
 let total=qty*price;
@@ -593,13 +761,21 @@ html+=`
 
 <tr>
 
-<td>${escapeHTML(name)}</td>
+<td>
+${escapeHTML(name)}
+</td>
 
-<td>${qty}</td>
+<td>
+${qty}
+</td>
 
-<td>${money(price)}</td>
+<td>
+${money(price)}
+</td>
 
-<td>${money(total)}</td>
+<td>
+${money(total)}
+</td>
 
 </tr>
 
@@ -608,138 +784,167 @@ html+=`
 });
 
 
-document.getElementById("previewItems").innerHTML=html;
+document.getElementById(
+"previewItems"
+).innerHTML=html;
 
 
 let discountRate=
-Number(document.getElementById("discount").value)
+Number(
+document.getElementById(
+"discount"
+).value
+)
 ||0;
 
+
 let taxRate=
-Number(document.getElementById("tax").value)
+Number(
+document.getElementById(
+"tax"
+).value
+)
 ||0;
 
 
 let discount=
-subtotal*discountRate/100;
+subtotal*
+discountRate/100;
+
 
 let taxable=
 subtotal-discount;
 
+
 let tax=
-taxable*taxRate/100;
+taxable*
+taxRate/100;
+
 
 let total=
 taxable+tax;
 
 
-document.getElementById("subtotal").textContent=
+document.getElementById(
+"subtotal"
+).textContent=
 money(subtotal);
 
-document.getElementById("discountAmount").textContent=
+
+document.getElementById(
+"discountAmount"
+).textContent=
 money(discount);
 
-document.getElementById("taxAmount").textContent=
+
+document.getElementById(
+"taxAmount"
+).textContent=
 money(tax);
 
-document.getElementById("grandTotal").textContent=
+
+document.getElementById(
+"grandTotal"
+).textContent=
 money(total);
 
 }
 
 
-/* SAFE TEXT */
+/* SECURITY */
 
 function escapeHTML(text){
 
 return String(text)
+
 .replaceAll("&","&amp;")
+
 .replaceAll("<","&lt;")
+
 .replaceAll(">","&gt;")
+
 .replaceAll('"',"&quot;")
+
 .replaceAll("'","&#039;");
 
 }
 
 
-/* DOWNLOAD IMAGE */
+/* DOWNLOAD PNG */
 
-async function downloadImage(){
+async function downloadPicture(){
 
 updateInvoice();
 
-const invoice=document.getElementById("invoice");
 
-const canvas=await html2canvas(invoice,{
-scale:2,
-backgroundColor:"#ffffff"
-});
+if(typeof html2canvas==="undefined"){
 
-const link=document.createElement("a");
+alert(
+"Image system load nahi hua. Internet connection check karein."
+);
 
-link.download=
-(document.getElementById("number").value||"invoice")
-+".png";
-
-link.href=canvas.toDataURL("image/png");
-
-link.click();
+return;
 
 }
 
 
-/* SHARE IMAGE */
-
-async function shareImage(){
-
-updateInvoice();
-
-const invoice=document.getElementById("invoice");
-
-const canvas=await html2canvas(invoice,{
-scale:2,
-backgroundColor:"#ffffff"
-});
-
-canvas.toBlob(async blob=>{
-
-if(!blob)return;
-
-const file=new File(
-[blob],
-"invoice.png",
-{type:"image/png"}
+const invoice=
+document.getElementById(
+"invoice"
 );
 
-if(
-navigator.share &&
-navigator.canShare &&
-navigator.canShare({files:[file]})
-){
 
 try{
 
-await navigator.share({
-title:"Invoice",
-text:"Invoice",
-files:[file]
-});
+const canvas=
+await html2canvas(
+invoice,
+{
+scale:3,
+backgroundColor:"#ffffff",
+useCORS:true
+}
+);
 
-}catch(error){
 
-console.log(error);
+const link=
+document.createElement("a");
+
+
+let invoiceNumber=
+document.getElementById(
+"number"
+).value
+||"invoice";
+
+
+link.download=
+invoiceNumber+".png";
+
+
+link.href=
+canvas.toDataURL(
+"image/png"
+);
+
+
+document.body.appendChild(link);
+
+link.click();
+
+link.remove();
 
 }
 
-}else{
+catch(error){
+
+console.error(error);
 
 alert(
-"Is browser mein direct image sharing available nahi hai. Pehle Download Image karein, phir WhatsApp mein image bhej dein."
+"Picture download nahi ho saki. Dobara try karein."
 );
 
 }
-
-},"image/png");
 
 }
 
@@ -748,32 +953,53 @@ alert(
 
 function newInvoice(){
 
-document.getElementById("business").value="";
+document.getElementById(
+"business"
+).value="";
 
-document.getElementById("customer").value="";
+document.getElementById(
+"customer"
+).value="";
 
-document.getElementById("phone").value="";
+document.getElementById(
+"phone"
+).value="";
 
-document.getElementById("number").value="INV-001";
+document.getElementById(
+"number"
+).value="INV-001";
 
-document.getElementById("date").value=today();
+document.getElementById(
+"date"
+).value=today();
 
-document.getElementById("status").value="Unpaid";
+document.getElementById(
+"status"
+).value="Unpaid";
 
-document.getElementById("tax").value="0";
+document.getElementById(
+"tax"
+).value="0";
 
-document.getElementById("discount").value="0";
+document.getElementById(
+"discount"
+).value="0";
 
-document.getElementById("items").innerHTML="";
+
+document.getElementById(
+"items"
+).innerHTML="";
+
 
 itemNumber=0;
+
 
 addItem();
 
 }
 
 
-/* LIVE FIELDS */
+/* LIVE UPDATE */
 
 [
 "business",
@@ -784,13 +1010,21 @@ addItem();
 "status",
 "tax",
 "discount"
+
 ].forEach(id=>{
 
-let element=document.getElementById(id);
+let element=
+document.getElementById(id);
 
-element.addEventListener("input",updateInvoice);
+element.addEventListener(
+"input",
+updateInvoice
+);
 
-element.addEventListener("change",updateInvoice);
+element.addEventListener(
+"change",
+updateInvoice
+);
 
 });
 
