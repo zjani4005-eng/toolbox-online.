@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolBox Online - Free Online Tools</title>
+    <meta name="description" content="Free online tools including word counter, age calculator, QR generator, and character counter.">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f7fb;
+            color: #172033;
+            line-height: 1.5;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            color: #64748b;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        .tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+
+        textarea, input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            margin: 8px 0 14px 0;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        textarea:focus, input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background: #2563eb;
+            color: #ffffff;
+            border: 0;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            margin-top: 14px;
+            font-weight: 600;
+            font-size: 15px;
+            color: #1e293b;
+            min-height: 24px;
+        }
+
+        .qr-output img {
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 8px;
+        }
+
+        .ad {
+            min-height: 90px;
+            background: #eef0f3;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 14px;
+            margin: 30px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            background: #0f172a;
+            color: #94a3b8;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 28px; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="logo">ToolBox Online</a>
+    <nav>
+        <a href="#tools">Tools</a>
+        <a href="#about">About</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Free Online Tools</h1>
+    <p>Simple, fast, and privacy-focused utilities for everyday tasks.</p>
+</section>
+
+<div class="container">
+
+    <div class="ad">Advertisement Space</div>
+
+    <section id="tools" class="tools">
+
+        <!-- Word Counter -->
+        <div class="card">
+            <div>
+                <h2>Word Counter</h2>
+                <textarea id="wordText" rows="5" placeholder="Type or paste your text..."></textarea>
+            </div>
+            <div>
+                <button onclick="countWords()">Count Words</button>
+                <div class="result" id="wordResult">Words: 0</div>
+            </div>
+        </div>
+
+        <!-- Age Calculator -->
+        <div class="card">
+            <div>
+                <h2>Age Calculator</h2>
+                <input type="date" id="birthDate">
+            </div>
+            <div>
+                <button onclick="calculateAge()">Calculate Age</button>
+                <div class="result" id="ageResult"></div>
+            </div>
+        </div>
+
+        <!-- QR Code Generator -->
+        <div class="card">
+            <div>
+                <h2>QR Code Generator</h2>
+                <input id="qrText" placeholder="Enter URL or string">
+            </div>
+            <div>
+                <button onclick="generateQR()">Generate QR</button>
+                <div id="qrResult" class="result qr-output"></div>
+            </div>
+        </div>
+
+        <!-- Character Counter -->
+        <div class="card">
+            <div>
+                <h2>Character Counter</h2>
+                <textarea id="charText" rows="5" placeholder="Type something..."></textarea>
+            </div>
+            <div>
+                <div class="result">
+                    <span id="charResult">0</span> characters
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="ad">Advertisement Space</div>
+
+    <section id="about" class="card" style="margin-top: 20px;">
+        <h2>About ToolBox Online</h2>
+        <p>
+            ToolBox Online provides lightweight, fast browser-based utilities for students, creators, and professionals. All calculations happen entirely on your client side for privacy and performance.
+        </p>
+    </section>
+
+</div>
+
+<footer>
+    © 2026 ToolBox Online · Privacy Policy · Terms
+</footer>
+
+<script>
+    // Word Counter
+    function countWords() {
+        const input = document.getElementById("wordText").value.trim();
+        const count = input ? input.split(/\s+/).length : 0;
+        document.getElementById("wordResult").textContent = `Words: ${count}`;
+    }
+
+    // Age Calculator
+    function calculateAge() {
+        const birthVal = document.getElementById("birthDate").value;
+        const resultEl = document.getElementById("ageResult");
+
+        if (!birthVal) {
+            resultEl.textContent = "Please select a birth date.";
+            return;
+        }
+
+        const birthDate = new Date(birthVal);
+        const today = new Date();
+
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+
+        resultEl.textContent = age >= 0 ? `Age: ${age} years old` : "Birth date cannot be in the future.";
+    }
+
+    // Live Character Counter
+    document.getElementById("charText").addEventListener("input", function() {
+        document.getElementById("charResult").textContent = this.value.length;
+    });
+
+    // QR Code Generator
+    function generateQR() {
+        const text = document.getElementById("qrText").value.trim();
+        const box = document.getElementById("qrResult");
+
+        if (!text) {
+            box.textContent = "Please enter text or a URL.";
+            return;
+        }
+
+        box.innerHTML = "";
+        const img = document.createElement("img");
+        img.width = 160;
+        img.height = 160;
+        img.alt = "Generated QR Code";
+        img.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(text)}`;
+
+        box.appendChild(img);
+    }
+</script>
+
+</body>
+</html>
