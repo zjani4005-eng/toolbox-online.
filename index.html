@@ -7,16 +7,13 @@
 <title>InvoicePro</title>
 
 <style>
-
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
 margin:0;
 font-family:Arial,sans-serif;
 background:#f4f7fb;
-color:#172033;
+color:#172033
 }
 
 header{
@@ -25,19 +22,19 @@ border-bottom:1px solid #ddd;
 padding:16px 5%;
 display:flex;
 align-items:center;
-justify-content:space-between;
+justify-content:space-between
 }
 
 .logo{
 font-size:24px;
 font-weight:bold;
-color:#2563eb;
+color:#2563eb
 }
 
 nav{
 display:flex;
 gap:8px;
-flex-wrap:wrap;
+flex-wrap:wrap
 }
 
 button{
@@ -45,67 +42,46 @@ border:0;
 padding:11px 15px;
 border-radius:8px;
 cursor:pointer;
-font-weight:bold;
+font-weight:bold
 }
 
-.blue{
-background:#2563eb;
-color:white;
-}
-
-.green{
-background:#16a34a;
-color:white;
-}
-
-.red{
-background:#dc2626;
-color:white;
-}
-
-.light{
-background:#eef2ff;
-color:#2563eb;
-}
-
-.gray{
-background:#eee;
-color:#333;
-}
+.blue{background:#2563eb;color:white}
+.green{background:#16a34a;color:white}
+.red{background:#dc2626;color:white}
+.light{background:#eef2ff;color:#2563eb}
+.gray{background:#eee;color:#333}
 
 .container{
 max-width:1150px;
 margin:auto;
-padding:25px 16px;
+padding:25px 16px
 }
 
-.hidden{
-display:none!important;
-}
+.hidden{display:none!important}
 
 .card{
 background:#fff;
 border-radius:16px;
 padding:22px;
 box-shadow:0 5px 20px #0001;
-margin-bottom:20px;
+margin-bottom:20px
 }
 
 .auth{
 max-width:430px;
-margin:50px auto;
+margin:50px auto
 }
 
 .auth h1{
 text-align:center;
-color:#2563eb;
+color:#2563eb
 }
 
 label{
 display:block;
 font-weight:bold;
 font-size:14px;
-margin-top:14px;
+margin-top:14px
 }
 
 input,select,textarea{
@@ -115,81 +91,77 @@ margin-top:6px;
 border:1px solid #ccd3df;
 border-radius:8px;
 outline:none;
-font-family:inherit;
+font-family:inherit
 }
 
 textarea{
 resize:vertical;
-min-height:90px;
+min-height:90px
 }
 
 input:focus,
 select:focus,
 textarea:focus{
-border-color:#2563eb;
+border-color:#2563eb
 }
 
 .auth button{
 width:100%;
-margin-top:15px;
+margin-top:15px
 }
 
 .auth-switch{
 text-align:center;
-margin-top:15px;
+margin-top:15px
 }
 
 .link{
 color:#2563eb;
 cursor:pointer;
-font-weight:bold;
+font-weight:bold
 }
 
 .grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:22px;
+gap:22px
 }
 
 .item{
 display:grid;
 grid-template-columns:2fr .8fr 1fr auto;
 gap:7px;
-margin-bottom:8px;
+margin-bottom:8px
 }
 
-.item input{
-margin:0;
-}
+.item input{margin:0}
 
 .remove{
 background:#fee2e2;
 color:#b91c1c;
-padding:10px 13px;
+padding:10px 13px
 }
 
 .invoice{
 background:#fff;
 border:1px solid #ddd;
 padding:30px;
-min-height:500px;
+min-height:500px
 }
 
 .invoice-top{
 display:flex;
 justify-content:space-between;
 border-bottom:2px solid #2563eb;
-padding-bottom:20px;
+padding-bottom:20px
 }
 
 .invoice h1{
 color:#2563eb;
-margin:0;
+margin:0
 }
 
-.meta{
-text-align:right;
-}
+.meta{text-align:right}
 
 .status{
 display:inline-block;
@@ -198,53 +170,51 @@ border-radius:20px;
 background:#dcfce7;
 color:#166534;
 font-size:12px;
-font-weight:bold;
+font-weight:bold
 }
 
-.customer{
-margin:25px 0;
-}
+.customer{margin:25px 0}
 
 table{
 width:100%;
-border-collapse:collapse;
+border-collapse:collapse
 }
 
 th,td{
 padding:10px;
 border-bottom:1px solid #ddd;
-text-align:left;
+text-align:left
 }
 
 .total{
 margin-left:auto;
 width:270px;
-margin-top:20px;
+margin-top:20px
 }
 
 .total div{
 display:flex;
 justify-content:space-between;
-padding:6px;
+padding:6px
 }
 
 .grand{
 border-top:2px solid #172033;
 font-size:20px;
 font-weight:bold;
-padding-top:10px!important;
+padding-top:10px!important
 }
 
 .actions{
 display:flex;
 gap:10px;
 flex-wrap:wrap;
-margin-top:15px;
+margin-top:15px
 }
 
 .actions button{
 flex:1;
-min-width:150px;
+min-width:150px
 }
 
 .history-item{
@@ -256,34 +226,32 @@ margin-bottom:10px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-gap:10px;
+gap:10px
 }
 
 .history-actions{
 display:flex;
 gap:7px;
-flex-wrap:wrap;
+flex-wrap:wrap
 }
 
-.profile-box{
-max-width:600px;
-}
+.profile-box{max-width:600px}
 
 .message{
 padding:10px;
 border-radius:8px;
 margin-top:10px;
-display:none;
+display:none
 }
 
 .success{
 background:#dcfce7;
-color:#166534;
+color:#166534
 }
 
 .error{
 background:#fee2e2;
-color:#991b1b;
+color:#991b1b
 }
 
 .feedback{
@@ -296,26 +264,62 @@ max-width:calc(100% - 36px);
 padding:20px;
 border-radius:16px;
 box-shadow:0 8px 30px #0003;
-z-index:1000;
+z-index:1000
 }
 
 .stars{
 display:flex;
 gap:5px;
-margin:10px 0;
+margin:10px 0
 }
 
 .stars button{
 background:#eee;
+padding:8px
+}
+
+.mfa-box{
+max-width:430px;
+margin:50px auto;
+text-align:center
+}
+
+.mfa-box img{
+display:block;
+width:220px;
+height:220px;
+margin:20px auto;
+border:1px solid #ddd;
 padding:8px;
+background:#fff
+}
+
+.mfa-secret{
+word-break:break-all;
+background:#f4f7fb;
+padding:10px;
+border-radius:8px;
+font-size:13px
+}
+
+.mfa-code{
+font-size:24px;
+letter-spacing:6px;
+text-align:center
+}
+
+.mfa-buttons{
+display:flex;
+gap:8px;
+flex-wrap:wrap
+}
+
+.mfa-buttons button{
+flex:1
 }
 
 @media(max-width:800px){
-
-.grid{
-grid-template-columns:1fr;
-}
-
+.grid{grid-template-columns:1fr}
 }
 
 @media(max-width:600px){
@@ -323,76 +327,33 @@ grid-template-columns:1fr;
 header{
 align-items:flex-start;
 gap:10px;
-flex-direction:column;
+flex-direction:column
 }
 
 .item{
-grid-template-columns:1fr 1fr;
+grid-template-columns:1fr 1fr
 }
 
 .itemName{
-grid-column:1/-1;
+grid-column:1/-1
 }
 
-.invoice{
-padding:18px;
-}
+.invoice{padding:18px}
 
 .invoice-top{
-flex-direction:column;
+flex-direction:column
 }
 
-.meta{
-text-align:left;
-}
+.meta{text-align:left}
 
 .history-item{
 flex-direction:column;
-align-items:flex-start;
+align-items:flex-start
 }
 
 }
-
-
-/* ==========================
-PRINT / PDF
-========================== */
 
 @media print{
-
-@page{
-size:A4;
-margin:10mm;
-}
-
-html,
-body{
-margin:0!important;
-padding:0!important;
-background:#fff!important;
-}
-
-body *{
-visibility:hidden!important;
-}
-
-#invoice,
-#invoice *{
-visibility:visible!important;
-}
-
-#invoice{
-position:absolute!important;
-left:0!important;
-top:0!important;
-width:100%!important;
-min-height:auto!important;
-margin:0!important;
-padding:15px!important;
-border:0!important;
-box-shadow:none!important;
-background:#fff!important;
-}
 
 header,
 .form,
@@ -400,42 +361,27 @@ header,
 .feedback,
 .no-print,
 h2{
-display:none!important;
+display:none!important
 }
 
-.container,
-.grid,
+body{background:#fff}
+
+.container{padding:0}
+
+.grid{display:block}
+
 .card{
-display:block!important;
-width:100%!important;
-max-width:none!important;
-margin:0!important;
-padding:0!important;
-box-shadow:none!important;
-background:#fff!important;
+box-shadow:none;
+padding:0
 }
 
-.invoice-top{
-display:flex!important;
-justify-content:space-between!important;
-}
-
-table{
-width:100%!important;
-border-collapse:collapse!important;
-}
-
-.total{
-margin-left:auto!important;
-}
+.invoice{border:0}
 
 }
-
 </style>
 </head>
 
 <body>
-
 
 <!-- AUTH -->
 
@@ -448,7 +394,6 @@ margin-left:auto!important;
 <p style="text-align:center">
 Professional invoices made simple.
 </p>
-
 
 <!-- LOGIN -->
 
@@ -473,89 +418,70 @@ placeholder="Password">
 <button
 class="blue"
 onclick="loginUser()">
-
 Login
-
 </button>
 
 <p class="auth-switch">
-
 Don't have an account?
-
-<span
-class="link"
-onclick="showSignup()">
-
+<span class="link" onclick="showSignup()">
 Sign Up
-
 </span>
-
 </p>
 
 <p class="auth-switch">
-
-<span
-class="link"
-onclick="showRecovery()">
-
+<span class="link" onclick="showRecovery()">
 Forgot Password?
-
 </span>
-
 </p>
 
 </div>
 
-
-<!-- LOGIN OTP -->
+<!-- MFA LOGIN -->
 
 <div
-id="loginOtpBox"
-class="hidden">
+id="mfaLoginBox"
+class="hidden mfa-box">
 
-<h2>Phone Verification</h2>
+<h2>🔐 Security Verification</h2>
 
 <p>
-Enter the 6-digit OTP sent to your phone.
+Open your Authenticator App and enter the 6-digit code.
 </p>
 
-<label>OTP Code</label>
-
 <input
-id="loginOtp"
+id="mfaLoginCode"
+class="mfa-code"
 type="text"
 inputmode="numeric"
 maxlength="6"
-placeholder="Enter 6-digit OTP">
+placeholder="123456">
 
 <button
-class="blue"
-onclick="verifyLoginOTP()">
-
-Verify OTP
-
+class="green"
+onclick="verifyLoginMFA()">
+Verify Code
 </button>
+
+<div
+id="mfaLoginMessage"
+class="message">
+</div>
 
 <p class="auth-switch">
 
 <span
 class="link"
-onclick="showLogin()">
-
+onclick="cancelMFA()">
 Back to Login
-
 </span>
 
 </p>
 
 </div>
 
-
 <!-- SIGNUP -->
 
-<div
-id="signupBox"
-class="hidden">
+<div id="signupBox" class="hidden">
 
 <h2>Create Account</h2>
 
@@ -572,13 +498,6 @@ id="signupEmail"
 type="email"
 placeholder="you@example.com">
 
-<label>Phone Number</label>
-
-<input
-id="signupPhone"
-type="tel"
-placeholder="+923001234567">
-
 <label>Password</label>
 
 <input
@@ -589,9 +508,7 @@ placeholder="Minimum 6 characters">
 <button
 class="blue"
 onclick="signupUser()">
-
 Create Account
-
 </button>
 
 <p class="auth-switch">
@@ -601,65 +518,16 @@ Already have an account?
 <span
 class="link"
 onclick="showLogin()">
-
 Login
-
 </span>
 
 </p>
 
 </div>
-
-
-<!-- SIGNUP OTP -->
-
-<div
-id="signupOtpBox"
-class="hidden">
-
-<h2>Verify Phone</h2>
-
-<p>
-Enter the 6-digit OTP sent to your phone.
-</p>
-
-<label>OTP Code</label>
-
-<input
-id="signupOtp"
-type="text"
-inputmode="numeric"
-maxlength="6"
-placeholder="Enter 6-digit OTP">
-
-<button
-class="blue"
-onclick="verifySignupOTP()">
-
-Verify OTP
-
-</button>
-
-<p class="auth-switch">
-
-<span
-class="link"
-onclick="showSignup()">
-
-Back
-
-</span>
-
-</p>
-
-</div>
-
 
 <!-- RECOVERY -->
 
-<div
-id="recoveryBox"
-class="hidden">
+<div id="recoveryBox" class="hidden">
 
 <h2>Account Recovery</h2>
 
@@ -677,9 +545,7 @@ placeholder="you@example.com">
 <button
 class="blue"
 onclick="sendRecovery()">
-
 Send Recovery Email
-
 </button>
 
 <p class="auth-switch">
@@ -687,32 +553,22 @@ Send Recovery Email
 <span
 class="link"
 onclick="showLogin()">
-
 Back to Login
-
 </span>
 
 </p>
 
 </div>
 
-
-<div
-id="authMessage"
-class="message">
-</div>
+<div id="authMessage" class="message"></div>
 
 </div>
-
 </section>
-
 
 
 <!-- APP -->
 
-<section
-id="appPage"
-class="hidden">
+<section id="appPage" class="hidden">
 
 <header>
 
@@ -725,51 +581,37 @@ InvoicePro
 <button
 class="light"
 onclick="showPage('invoicePage')">
-
 Create Invoice
-
 </button>
 
 <button
 class="light"
 onclick="loadHistory()">
-
 History
-
 </button>
 
 <button
 class="light"
 onclick="showSettings()">
-
 Settings
-
 </button>
 
 <button
 class="red"
 onclick="logoutUser()">
-
 Logout
-
 </button>
 
 </nav>
-
 </header>
-
 
 <div class="container">
 
-
-<!-- INVOICE PAGE -->
+<!-- INVOICE -->
 
 <div id="invoicePage">
 
 <div class="grid">
-
-
-<!-- FORM -->
 
 <div class="card form">
 
@@ -808,11 +650,9 @@ type="date">
 <label>Payment Status</label>
 
 <select id="status">
-
 <option>Unpaid</option>
 <option>Paid</option>
 <option>Pending</option>
-
 </select>
 
 <h3>Items</h3>
@@ -822,9 +662,7 @@ type="date">
 <button
 class="light"
 onclick="addItem()">
-
 + Add Item
-
 </button>
 
 <label>Tax (%)</label>
@@ -832,33 +670,27 @@ onclick="addItem()">
 <input
 id="tax"
 type="number"
-value="0"
-placeholder="Tax %">
+value="0">
 
 <label>Discount (%)</label>
 
 <input
 id="discount"
 type="number"
-value="0"
-placeholder="Discount %">
+value="0">
 
 <div class="actions">
 
 <button
 class="blue"
 onclick="saveInvoice()">
-
 💾 Save Invoice
-
 </button>
 
 <button
 class="gray"
 onclick="newInvoice()">
-
 New
-
 </button>
 
 </div>
@@ -866,15 +698,11 @@ New
 </div>
 
 
-<!-- PREVIEW -->
-
 <div class="card">
 
 <h2>Invoice Preview</h2>
 
-<div
-class="invoice"
-id="invoice">
+<div class="invoice" id="invoice">
 
 <div class="invoice-top">
 
@@ -903,9 +731,7 @@ INV-001
 <span
 class="status"
 id="previewStatus">
-
 Unpaid
-
 </span>
 
 </div>
@@ -929,88 +755,56 @@ Customer Name
 <thead>
 
 <tr>
-
 <th>Item</th>
-
 <th>Quantity</th>
-
 <th>Price</th>
-
 <th>Total</th>
-
 </tr>
 
 </thead>
 
-<tbody
-id="previewItems">
-</tbody>
+<tbody id="previewItems"></tbody>
 
 </table>
 
 <div class="total">
 
 <div>
-
 <span>Subtotal</span>
-
-<strong id="subtotal">
-Rs. 0
-</strong>
-
+<strong id="subtotal">Rs. 0</strong>
 </div>
 
 <div>
-
 <span>Discount</span>
-
-<strong id="discountAmount">
-Rs. 0
-</strong>
-
+<strong id="discountAmount">Rs. 0</strong>
 </div>
 
 <div>
-
 <span>Tax</span>
-
-<strong id="taxAmount">
-Rs. 0
-</strong>
-
+<strong id="taxAmount">Rs. 0</strong>
 </div>
 
 <div class="grand">
-
 <span>Total</span>
-
-<strong id="grandTotal">
-Rs. 0
-</strong>
-
+<strong id="grandTotal">Rs. 0</strong>
 </div>
 
 </div>
 
 </div>
-
 
 <div class="actions">
 
 <button
 class="green"
 onclick="downloadPicture()">
-
 🖼️ Download Picture
-
 </button>
 
 <button
 class="blue"
 onclick="printInvoice()">
-
 🖨️ Print / PDF
-
 </button>
 
 </div>
@@ -1018,36 +812,28 @@ onclick="printInvoice()">
 </div>
 
 </div>
-
 </div>
 
 
 <!-- HISTORY -->
 
-<div
-id="historyPage"
-class="hidden">
+<div id="historyPage" class="hidden">
 
 <div class="card">
 
 <h2>📋 Invoice History</h2>
 
 <div id="historyList">
-
 Loading...
-
 </div>
 
 </div>
-
 </div>
 
 
 <!-- SETTINGS -->
 
-<div
-id="settingsPage"
-class="hidden">
+<div id="settingsPage" class="hidden">
 
 <div class="card profile-box">
 
@@ -1059,17 +845,89 @@ class="hidden">
 
 <label>Email</label>
 
-<input
-id="settingsEmail"
-disabled>
+<input id="settingsEmail" disabled>
 
 <button
 class="blue"
 onclick="saveProfile()">
-
 Save Name
-
 </button>
+
+<hr style="margin:25px 0">
+
+<h3>🔐 Two-Factor Authentication</h3>
+
+<p>
+Login ke waqt 6-digit Authenticator code ke liye 2FA enable karein.
+</p>
+
+<button
+class="green"
+onclick="startMFASetup()">
+Enable 2FA
+</button>
+
+<button
+class="red"
+onclick="disableMFA()">
+Disable 2FA
+</button>
+
+<div id="mfaSetupBox" class="hidden">
+
+<hr style="margin:25px 0">
+
+<h3>Scan QR Code</h3>
+
+<p>
+Google Authenticator ya kisi TOTP Authenticator App se QR code scan karein.
+</p>
+
+<img
+id="mfaQR"
+alt="MFA QR Code">
+
+<p>
+Agar QR scan na ho to Secret use karein:
+</p>
+
+<div
+id="mfaSecret"
+class="mfa-secret">
+</div>
+
+<label>6-Digit Code</label>
+
+<input
+id="mfaSetupCode"
+class="mfa-code"
+type="text"
+inputmode="numeric"
+maxlength="6"
+placeholder="123456">
+
+<div class="mfa-buttons">
+
+<button
+class="green"
+onclick="verifyMFASetup()">
+Enable
+</button>
+
+<button
+class="gray"
+onclick="cancelMFASetup()">
+Cancel
+</button>
+
+</div>
+
+<div
+id="mfaSetupMessage"
+class="message">
+</div>
+
+</div>
 
 <hr style="margin:25px 0">
 
@@ -1085,9 +943,7 @@ placeholder="New password">
 <button
 class="blue"
 onclick="changePassword()">
-
 Change Password
-
 </button>
 
 <div
@@ -1096,13 +952,10 @@ class="message">
 </div>
 
 </div>
-
 </div>
 
 </div>
-
 </section>
-
 
 
 <!-- FEEDBACK -->
@@ -1113,9 +966,7 @@ class="feedback hidden">
 
 <h3>⭐ How is InvoicePro?</h3>
 
-<p>
-Please rate your experience.
-</p>
+<p>Please rate your experience.</p>
 
 <div class="stars">
 
@@ -1129,37 +980,30 @@ Please rate your experience.
 
 <textarea
 id="feedbackText"
-placeholder="Your feedback...">
-</textarea>
+placeholder="Your feedback..."></textarea>
 
 <br><br>
 
 <button
 class="blue"
 onclick="submitFeedback()">
-
 Send
-
 </button>
 
 <button
 class="gray"
 onclick="closeFeedback()">
-
 Later
-
 </button>
 
 </div>
-
 
 
 <!-- LIBRARIES -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script src="config.js"></script>
 
@@ -1167,23 +1011,11 @@ Later
 <script>
 
 let currentUser=null;
-
 let itemNumber=0;
-
 let selectedRating=0;
-
 let editingInvoiceId=null;
 
-
-/* ==========================
-OTP VARIABLES
-========================== */
-
-let signupFactorId=null;
-let signupChallengeId=null;
-
-let loginFactorId=null;
-let loginChallengeId=null;
+let pendingMFAFactorId=null;
 
 
 /* ==========================
@@ -1195,16 +1027,13 @@ function showLogin(){
 document.getElementById("loginBox")
 .classList.remove("hidden");
 
-document.getElementById("loginOtpBox")
-.classList.add("hidden");
-
 document.getElementById("signupBox")
 .classList.add("hidden");
 
-document.getElementById("signupOtpBox")
+document.getElementById("recoveryBox")
 .classList.add("hidden");
 
-document.getElementById("recoveryBox")
+document.getElementById("mfaLoginBox")
 .classList.add("hidden");
 
 }
@@ -1215,16 +1044,13 @@ function showSignup(){
 document.getElementById("loginBox")
 .classList.add("hidden");
 
-document.getElementById("loginOtpBox")
-.classList.add("hidden");
-
 document.getElementById("signupBox")
 .classList.remove("hidden");
 
-document.getElementById("signupOtpBox")
+document.getElementById("recoveryBox")
 .classList.add("hidden");
 
-document.getElementById("recoveryBox")
+document.getElementById("mfaLoginBox")
 .classList.add("hidden");
 
 }
@@ -1235,25 +1061,21 @@ function showRecovery(){
 document.getElementById("loginBox")
 .classList.add("hidden");
 
-document.getElementById("loginOtpBox")
-.classList.add("hidden");
-
 document.getElementById("signupBox")
-.classList.add("hidden");
-
-document.getElementById("signupOtpBox")
 .classList.add("hidden");
 
 document.getElementById("recoveryBox")
 .classList.remove("hidden");
+
+document.getElementById("mfaLoginBox")
+.classList.add("hidden");
 
 }
 
 
 function authMessage(text,type="success"){
 
-let box=
-document.getElementById("authMessage");
+let box=document.getElementById("authMessage");
 
 box.textContent=text;
 
@@ -1270,34 +1092,18 @@ SIGN UP
 
 async function signupUser(){
 
-let name=
-document.getElementById("signupName")
-.value.trim();
+let name=document.getElementById("signupName").value.trim();
 
-let email=
-document.getElementById("signupEmail")
-.value.trim();
+let email=document.getElementById("signupEmail").value.trim();
 
-let phone=
-document.getElementById("signupPhone")
-.value.trim();
+let password=document.getElementById("signupPassword").value;
 
-let password=
-document.getElementById("signupPassword")
-.value;
+if(!name||!email||!password){
 
-
-if(!name||!email||!phone||!password){
-
-authMessage(
-"Please fill all fields.",
-"error"
-);
-
+authMessage("Please fill all fields.","error");
 return;
 
 }
-
 
 if(password.length<6){
 
@@ -1310,23 +1116,7 @@ return;
 
 }
 
-
-if(!phone.startsWith("+")){
-
-authMessage(
-"Phone number must include country code. Example: +923001234567",
-"error"
-);
-
-return;
-
-}
-
-
-const {
-data,
-error
-}=
+const {data,error} =
 await supabaseClient.auth.signUp({
 
 email:email,
@@ -1335,189 +1125,23 @@ password:password,
 
 options:{
 data:{
-name:name,
-phone:phone
+name:name
 }
 }
 
 });
-
 
 if(error){
 
-authMessage(
-error.message,
-"error"
-);
-
+authMessage(error.message,"error");
 return;
 
 }
 
-
-/*
-If email confirmation is enabled,
-Supabase may not provide a session.
-*/
-
-if(!data.session){
-
 authMessage(
-"Account created. Confirm your email first, then login to continue phone verification.",
+"Account created. Confirm your email before login.",
 "success"
 );
-
-return;
-
-}
-
-
-currentUser=data.user;
-
-
-/*
-Enroll phone MFA
-*/
-
-const {
-data:factorData,
-error:factorError
-}=
-await supabaseClient.auth.mfa.enroll({
-
-factorType:"phone",
-
-friendlyName:"InvoicePro Phone",
-
-phone:phone
-
-});
-
-
-if(factorError){
-
-authMessage(
-factorError.message,
-"error"
-);
-
-return;
-
-}
-
-
-signupFactorId=
-factorData.id;
-
-
-/*
-Send OTP
-*/
-
-const {
-data:challengeData,
-error:challengeError
-}=
-await supabaseClient.auth.mfa.challenge({
-
-factorId:signupFactorId
-
-});
-
-
-if(challengeError){
-
-authMessage(
-challengeError.message,
-"error"
-);
-
-return;
-
-}
-
-
-signupChallengeId=
-challengeData.id;
-
-
-document.getElementById("signupBox")
-.classList.add("hidden");
-
-document.getElementById("signupOtpBox")
-.classList.remove("hidden");
-
-
-authMessage(
-"OTP sent to your phone.",
-"success"
-);
-
-}
-
-
-/* ==========================
-SIGNUP OTP
-========================== */
-
-async function verifySignupOTP(){
-
-let code=
-document.getElementById("signupOtp")
-.value.trim();
-
-
-if(!/^\d{6}$/.test(code)){
-
-authMessage(
-"Enter the 6-digit OTP.",
-"error"
-);
-
-return;
-
-}
-
-
-const {
-error
-}=
-await supabaseClient.auth.mfa.verify({
-
-factorId:signupFactorId,
-
-challengeId:signupChallengeId,
-
-code:code
-
-});
-
-
-if(error){
-
-authMessage(
-"Invalid OTP: "+error.message,
-"error"
-);
-
-return;
-
-}
-
-
-const {
-data
-}=
-await supabaseClient.auth.getUser();
-
-
-if(data.user){
-
-currentUser=data.user;
-
-await showApp();
-
-}
 
 }
 
@@ -1528,14 +1152,9 @@ LOGIN
 
 async function loginUser(){
 
-let email=
-document.getElementById("loginEmail")
-.value.trim();
+let email=document.getElementById("loginEmail").value.trim();
 
-let password=
-document.getElementById("loginPassword")
-.value;
-
+let password=document.getElementById("loginPassword").value;
 
 if(!email||!password){
 
@@ -1549,14 +1168,10 @@ return;
 }
 
 
-const {
-data,
-error
-}=
+const {data,error} =
 await supabaseClient.auth.signInWithPassword({
 
 email:email,
-
 password:password
 
 });
@@ -1578,115 +1193,92 @@ currentUser=data.user;
 
 
 /*
-Check MFA factors
+CHECK MFA LEVEL
 */
 
 const {
-data:factorData,
-error:factorError
-}=
-await supabaseClient.auth.mfa.listFactors();
+data:aalData,
+error:aalError
+} =
+await supabaseClient.auth.mfa
+.getAuthenticatorAssuranceLevel();
 
 
-if(factorError){
+if(aalError){
+
+await supabaseClient.auth.signOut();
+
+currentUser=null;
 
 authMessage(
-factorError.message,
+aalError.message,
 "error"
 );
 
 return;
 
 }
-
-
-const phoneFactor=
-factorData.all.find(
-factor=>
-factor.factor_type==="phone" &&
-factor.status==="verified"
-);
-
-
-if(!phoneFactor){
-
-authMessage(
-"Phone OTP is not setup for this account.",
-"error"
-);
-
-return;
-
-}
-
-
-loginFactorId=
-phoneFactor.id;
 
 
 /*
-Send login OTP
+MFA IS REQUIRED
 */
 
-const {
-data:challengeData,
-error:challengeError
-}=
-await supabaseClient.auth.mfa.challenge({
-
-factorId:loginFactorId
-
-});
-
-
-if(challengeError){
-
-authMessage(
-challengeError.message,
-"error"
-);
-
-return;
-
-}
-
-
-loginChallengeId=
-challengeData.id;
-
+if(
+aalData.nextLevel==="aal2" &&
+aalData.currentLevel!=="aal2"
+){
 
 document.getElementById("loginBox")
 .classList.add("hidden");
 
-document.getElementById("loginOtpBox")
+document.getElementById("mfaLoginBox")
 .classList.remove("hidden");
 
+document.getElementById("mfaLoginCode").value="";
 
 authMessage(
-"OTP sent to your phone.",
+"Password correct. Authenticator App ka 6-digit code enter karein.",
 "success"
 );
+
+return;
+
+}
+
+
+/*
+NO MFA
+*/
+
+await showApp();
 
 }
 
 
 /* ==========================
-LOGIN OTP
+VERIFY LOGIN MFA
 ========================== */
 
-async function verifyLoginOTP(){
+async function verifyLoginMFA(){
 
 let code=
-document.getElementById("loginOtp")
+document.getElementById("mfaLoginCode")
 .value.trim();
 
 
 if(!/^\d{6}$/.test(code)){
 
-authMessage(
-"Enter the 6-digit OTP.",
-"error"
-);
+let box=
+document.getElementById("mfaLoginMessage");
+
+box.textContent=
+"6-digit code enter karein.";
+
+box.className=
+"message error";
+
+box.style.display="block";
 
 return;
 
@@ -1694,24 +1286,73 @@ return;
 
 
 const {
+data,
 error
-}=
+} =
+await supabaseClient.auth.mfa
+.listFactors();
+
+
+if(error){
+
+showMFALoginError(error.message);
+return;
+
+}
+
+
+let factor=
+data.totp.find(
+f=>f.status==="verified"
+);
+
+
+if(!factor){
+
+showMFALoginError(
+"No verified Authenticator found."
+);
+
+return;
+
+}
+
+
+const challenge=
+await supabaseClient.auth.mfa.challenge({
+
+factorId:factor.id
+
+});
+
+
+if(challenge.error){
+
+showMFALoginError(
+challenge.error.message
+);
+
+return;
+
+}
+
+
+const verify=
 await supabaseClient.auth.mfa.verify({
 
-factorId:loginFactorId,
+factorId:factor.id,
 
-challengeId:loginChallengeId,
+challengeId:challenge.data.id,
 
 code:code
 
 });
 
 
-if(error){
+if(verify.error){
 
-authMessage(
-"Invalid OTP: "+error.message,
-"error"
+showMFALoginError(
+"Invalid 6-digit code. Try again."
 );
 
 return;
@@ -1720,14 +1361,78 @@ return;
 
 
 const {
-data
-}=
-await supabaseClient.auth.getUser();
+data:sessionData
+} =
+await supabaseClient.auth.getSession();
 
 
-currentUser=data.user;
+if(!sessionData.session){
+
+showMFALoginError(
+"Session not found."
+);
+
+return;
+
+}
+
+
+currentUser=
+sessionData.session.user;
+
+
+document.getElementById("mfaLoginBox")
+.classList.add("hidden");
+
+document.getElementById("mfaLoginCode")
+.value="";
+
+
+authMessage(
+"2FA verified. Login successful!",
+"success"
+);
+
 
 await showApp();
+
+}
+
+
+function showMFALoginError(message){
+
+let box=
+document.getElementById(
+"mfaLoginMessage"
+);
+
+box.textContent=message;
+
+box.className=
+"message error";
+
+box.style.display="block";
+
+}
+
+
+/* ==========================
+CANCEL MFA
+========================== */
+
+async function cancelMFA(){
+
+await supabaseClient.auth.signOut();
+
+currentUser=null;
+
+document.getElementById("mfaLoginBox")
+.classList.add("hidden");
+
+document.getElementById("mfaLoginCode")
+.value="";
+
+showLogin();
 
 }
 
@@ -1739,10 +1444,8 @@ RECOVERY
 async function sendRecovery(){
 
 let email=
-document.getElementById(
-"recoveryEmail"
-).value.trim();
-
+document.getElementById("recoveryEmail")
+.value.trim();
 
 if(!email){
 
@@ -1755,11 +1458,9 @@ return;
 
 }
 
-
-const {
-error
-}=
-await supabaseClient.auth.resetPasswordForEmail(
+const {error} =
+await supabaseClient.auth
+.resetPasswordForEmail(
 email,
 {
 redirectTo:
@@ -1767,7 +1468,6 @@ window.location.origin+
 window.location.pathname
 }
 );
-
 
 if(error){
 
@@ -1779,7 +1479,6 @@ error.message,
 return;
 
 }
-
 
 authMessage(
 "Recovery email sent. Check your inbox.",
@@ -1804,10 +1503,6 @@ showAuth();
 }
 
 
-/* ==========================
-AUTH STATE
-========================== */
-
 function showAuth(){
 
 document.getElementById("authPage")
@@ -1818,6 +1513,10 @@ document.getElementById("appPage")
 
 }
 
+
+/* ==========================
+SHOW APP
+========================== */
 
 async function showApp(){
 
@@ -1840,10 +1539,9 @@ PROFILE
 
 async function loadProfile(){
 
-const {
-data,
-error
-}=
+if(!currentUser)return;
+
+const {data,error} =
 await supabaseClient
 .from("profiles")
 .select("*")
@@ -1853,16 +1551,12 @@ await supabaseClient
 
 if(data){
 
-document.getElementById(
-"settingsName"
-).value=
-data.name||"";
+document.getElementById("settingsName")
+.value=data.name||"";
 
-document.getElementById(
-"settingsEmail"
-).value=
-data.email||
-currentUser.email;
+document.getElementById("settingsEmail")
+.value=
+data.email||currentUser.email;
 
 }
 
@@ -1872,43 +1566,29 @@ currentUser.email;
 async function saveProfile(){
 
 let name=
-document.getElementById(
-"settingsName"
-).value.trim();
+document.getElementById("settingsName")
+.value.trim();
 
-
-const {
-error
-}=
+const {error} =
 await supabaseClient
 .from("profiles")
-.update({
-name:name
-})
+.update({name:name})
 .eq("id",currentUser.id);
 
 
 let box=
-document.getElementById(
-"settingsMessage"
-);
+document.getElementById("settingsMessage");
 
 
 if(error){
 
-box.textContent=
-error.message;
-
-box.className=
-"message error";
+box.textContent=error.message;
+box.className="message error";
 
 }else{
 
-box.textContent=
-"Profile updated.";
-
-box.className=
-"message success";
+box.textContent="Profile updated.";
+box.className="message success";
 
 }
 
@@ -1920,10 +1600,8 @@ box.style.display="block";
 async function changePassword(){
 
 let password=
-document.getElementById(
-"newPassword"
-).value;
-
+document.getElementById("newPassword")
+.value;
 
 if(password.length<6){
 
@@ -1935,14 +1613,10 @@ return;
 
 }
 
-
-const {
-error
-}=
+const {error} =
 await supabaseClient.auth.updateUser({
 password:password
 });
-
 
 if(error){
 
@@ -1964,27 +1638,284 @@ document.getElementById(
 
 
 /* ==========================
+MFA SETUP
+========================== */
+
+async function startMFASetup(){
+
+if(!currentUser){
+
+alert("Please login first.");
+return;
+
+}
+
+
+const {data,error} =
+await supabaseClient.auth.mfa.enroll({
+
+factorType:"totp",
+
+friendlyName:"InvoicePro Authenticator"
+
+});
+
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+
+pendingMFAFactorId=data.id;
+
+
+document.getElementById("mfaQR")
+.src=
+"data:image/svg+xml;utf8,"+
+encodeURIComponent(
+data.totp.qr_code
+);
+
+
+document.getElementById("mfaSecret")
+.textContent=
+data.totp.secret;
+
+
+document.getElementById("mfaSetupBox")
+.classList.remove("hidden");
+
+
+document.getElementById("mfaSetupCode")
+.value="";
+
+}
+
+
+/* ==========================
+VERIFY MFA SETUP
+========================== */
+
+async function verifyMFASetup(){
+
+if(!pendingMFAFactorId){
+
+showMFASetupMessage(
+"No MFA setup found.",
+"error"
+);
+
+return;
+
+}
+
+
+let code=
+document.getElementById("mfaSetupCode")
+.value.trim();
+
+
+if(!/^\d{6}$/.test(code)){
+
+showMFASetupMessage(
+"Enter a valid 6-digit code.",
+"error"
+);
+
+return;
+
+}
+
+
+const challenge=
+await supabaseClient.auth.mfa.challenge({
+
+factorId:pendingMFAFactorId
+
+});
+
+
+if(challenge.error){
+
+showMFASetupMessage(
+challenge.error.message,
+"error"
+);
+
+return;
+
+}
+
+
+const verify=
+await supabaseClient.auth.mfa.verify({
+
+factorId:pendingMFAFactorId,
+
+challengeId:challenge.data.id,
+
+code:code
+
+});
+
+
+if(verify.error){
+
+showMFASetupMessage(
+verify.error.message,
+"error"
+);
+
+return;
+
+}
+
+
+showMFASetupMessage(
+"2FA successfully enabled!",
+"success"
+);
+
+
+document.getElementById("mfaSetupBox")
+.classList.add("hidden");
+
+pendingMFAFactorId=null;
+
+document.getElementById(
+"mfaSetupCode"
+).value="";
+
+}
+
+
+function showMFASetupMessage(text,type){
+
+let box=
+document.getElementById(
+"mfaSetupMessage"
+);
+
+box.textContent=text;
+
+box.className=
+"message "+type;
+
+box.style.display="block";
+
+}
+
+
+function cancelMFASetup(){
+
+document.getElementById(
+"mfaSetupBox"
+).classList.add("hidden");
+
+document.getElementById(
+"mfaSetupCode"
+).value="";
+
+pendingMFAFactorId=null;
+
+}
+
+
+/* ==========================
+DISABLE MFA
+========================== */
+
+async function disableMFA(){
+
+if(!currentUser){
+
+alert("Please login first.");
+return;
+
+}
+
+
+const {data,error} =
+await supabaseClient.auth.mfa.listFactors();
+
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+
+const factor=
+data.totp.find(
+f=>f.status==="verified"
+);
+
+
+if(!factor){
+
+alert(
+"2FA is not currently enabled."
+);
+
+return;
+
+}
+
+
+if(!confirm(
+"Are you sure you want to disable 2FA?"
+)){
+
+return;
+
+}
+
+
+const {error:unenrollError} =
+await supabaseClient.auth.mfa.unenroll({
+
+factorId:factor.id
+
+});
+
+
+if(unenrollError){
+
+alert(unenrollError.message);
+return;
+
+}
+
+
+alert(
+"2FA disabled successfully."
+);
+
+}
+
+
+/* ==========================
 PAGES
 ========================== */
 
 function showPage(page){
 
-document.getElementById(
-"invoicePage"
-).classList.add("hidden");
+document.getElementById("invoicePage")
+.classList.add("hidden");
 
-document.getElementById(
-"historyPage"
-).classList.add("hidden");
+document.getElementById("historyPage")
+.classList.add("hidden");
 
-document.getElementById(
-"settingsPage"
-).classList.add("hidden");
+document.getElementById("settingsPage")
+.classList.add("hidden");
 
-
-document.getElementById(
-page
-).classList.remove("hidden");
+document.getElementById(page)
+.classList.remove("hidden");
 
 }
 
@@ -2025,23 +1956,15 @@ return d.getFullYear()+
 ITEM
 ========================== */
 
-function addItem(
-name="",
-qty="",
-price=""
-){
+function addItem(name="",qty="",price=""){
 
 itemNumber++;
 
-
-let item=
-document.createElement("div");
+let item=document.createElement("div");
 
 item.className="item";
 
-item.id=
-"item"+itemNumber;
-
+item.id="item"+itemNumber;
 
 item.innerHTML=`
 
@@ -2069,26 +1992,19 @@ class="remove"
 onclick="removeItem(${itemNumber})">
 ×
 </button>
-
 `;
-
 
 document
 .getElementById("items")
 .appendChild(item);
 
-
-item
-.querySelectorAll("input")
+item.querySelectorAll("input")
 .forEach(input=>{
-
 input.addEventListener(
 "input",
 updateInvoice
 );
-
 });
-
 
 updateInvoice();
 
@@ -2098,9 +2014,7 @@ updateInvoice();
 function removeItem(id){
 
 let item=
-document.getElementById(
-"item"+id
-);
+document.getElementById("item"+id);
 
 if(item){
 
@@ -2121,44 +2035,27 @@ function newInvoice(){
 
 editingInvoiceId=null;
 
-document.getElementById(
-"business"
-).value="";
+document.getElementById("business").value="";
+document.getElementById("customer").value="";
+document.getElementById("phone").value="";
 
-document.getElementById(
-"customer"
-).value="";
+document.getElementById("number")
+.value="INV-001";
 
-document.getElementById(
-"phone"
-).value="";
+document.getElementById("date")
+.value=today();
 
-document.getElementById(
-"number"
-).value=
-"INV-001";
+document.getElementById("status")
+.value="Unpaid";
 
-document.getElementById(
-"date"
-).value=
-today();
+document.getElementById("tax")
+.value="0";
 
-document.getElementById(
-"status"
-).value=
-"Unpaid";
+document.getElementById("discount")
+.value="0";
 
-document.getElementById(
-"tax"
-).value="0";
-
-document.getElementById(
-"discount"
-).value="0";
-
-document.getElementById(
-"items"
-).innerHTML="";
+document.getElementById("items")
+.innerHTML="";
 
 itemNumber=0;
 
@@ -2175,112 +2072,56 @@ UPDATE PREVIEW
 
 function updateInvoice(){
 
-document.getElementById(
-"previewBusiness"
-).textContent=
-
-document.getElementById(
-"business"
-).value
+document.getElementById("previewBusiness")
+.textContent=
+document.getElementById("business").value
 ||"Your Business Name";
 
-
-document.getElementById(
-"previewCustomer"
-).textContent=
-
-document.getElementById(
-"customer"
-).value
+document.getElementById("previewCustomer")
+.textContent=
+document.getElementById("customer").value
 ||"Customer Name";
 
+document.getElementById("previewPhone")
+.textContent=
+document.getElementById("phone").value;
 
-document.getElementById(
-"previewPhone"
-).textContent=
-
-document.getElementById(
-"phone"
-).value;
-
-
-document.getElementById(
-"previewNumber"
-).textContent=
-
-document.getElementById(
-"number"
-).value
+document.getElementById("previewNumber")
+.textContent=
+document.getElementById("number").value
 ||"INV-001";
 
-
-document.getElementById(
-"previewDate"
-).textContent=
-
-document.getElementById(
-"date"
-).value
+document.getElementById("previewDate")
+.textContent=
+document.getElementById("date").value
 ||today();
 
-
-document.getElementById(
-"previewStatus"
-).textContent=
-
-document.getElementById(
-"status"
-).value;
-
+document.getElementById("previewStatus")
+.textContent=
+document.getElementById("status").value;
 
 let subtotal=0;
-
 let html="";
 
-let items=[];
-
-
-document
-.querySelectorAll(".item")
+document.querySelectorAll(".item")
 .forEach(item=>{
 
 let name=
-item.querySelector(
-".itemName"
-).value;
+item.querySelector(".itemName").value;
 
 let qty=
 Number(
-item.querySelector(
-".itemQty"
-).value
+item.querySelector(".itemQty").value
 )||0;
 
 let price=
 Number(
-item.querySelector(
-".itemPrice"
-).value
+item.querySelector(".itemPrice").value
 )||0;
 
-let total=
-qty*price;
-
-
-if(name||qty||price){
-
-items.push({
-name:name,
-qty:qty,
-price:price,
-total:total
-});
-
-}
-
+let total=qty*price;
 
 subtotal+=total;
-
 
 html+=`
 
@@ -2297,73 +2138,46 @@ ${escapeHTML(name||"Item")}
 <td>${money(total)}</td>
 
 </tr>
-
 `;
 
 });
 
-
-document.getElementById(
-"previewItems"
-).innerHTML=html;
-
+document.getElementById("previewItems")
+.innerHTML=html;
 
 let discountRate=
 Number(
-document.getElementById(
-"discount"
-).value
+document.getElementById("discount").value
 )||0;
-
 
 let taxRate=
 Number(
-document.getElementById(
-"tax"
-).value
+document.getElementById("tax").value
 )||0;
 
-
 let discount=
-subtotal*
-discountRate/100;
-
+subtotal*discountRate/100;
 
 let taxable=
 subtotal-discount;
 
-
 let tax=
-taxable*
-taxRate/100;
-
+taxable*taxRate/100;
 
 let total=
 taxable+tax;
 
+document.getElementById("subtotal")
+.textContent=money(subtotal);
 
-document.getElementById(
-"subtotal"
-).textContent=
-money(subtotal);
+document.getElementById("discountAmount")
+.textContent=money(discount);
 
+document.getElementById("taxAmount")
+.textContent=money(tax);
 
-document.getElementById(
-"discountAmount"
-).textContent=
-money(discount);
-
-
-document.getElementById(
-"taxAmount"
-).textContent=
-money(tax);
-
-
-document.getElementById(
-"grandTotal"
-).textContent=
-money(total);
+document.getElementById("grandTotal")
+.textContent=money(total);
 
 }
 
@@ -2406,48 +2220,37 @@ return String(text||"")
 
 
 /* ==========================
-GET CURRENT ITEMS
+GET ITEMS
 ========================== */
 
 function getItems(){
 
 let items=[];
 
-
-document
-.querySelectorAll(".item")
+document.querySelectorAll(".item")
 .forEach(item=>{
 
 let name=
-item.querySelector(
-".itemName"
-).value.trim();
+item.querySelector(".itemName")
+.value.trim();
 
 let qty=
 Number(
-item.querySelector(
-".itemQty"
-).value
+item.querySelector(".itemQty").value
 )||0;
 
 let price=
 Number(
-item.querySelector(
-".itemPrice"
-).value
+item.querySelector(".itemPrice").value
 )||0;
-
 
 if(name){
 
 items.push({
 
 name:name,
-
 qty:qty,
-
 price:price,
-
 total:qty*price
 
 });
@@ -2455,7 +2258,6 @@ total:qty*price
 }
 
 });
-
 
 return items;
 
@@ -2470,17 +2272,12 @@ async function saveInvoice(){
 
 if(!currentUser){
 
-alert(
-"Please login first."
-);
-
+alert("Please login first.");
 return;
 
 }
 
-
 let items=getItems();
-
 
 if(items.length===0){
 
@@ -2492,77 +2289,57 @@ return;
 
 }
 
-
 let subtotal=items.reduce(
-(sum,item)=>
-sum+item.total,
+(sum,item)=>sum+item.total,
 0
 );
 
-
 let taxRate=
 Number(
-document.getElementById(
-"tax"
-).value
+document.getElementById("tax").value
 )||0;
-
 
 let discountRate=
 Number(
-document.getElementById(
-"discount"
-).value
+document.getElementById("discount").value
 )||0;
 
-
 let discount=
-subtotal*
-discountRate/100;
-
+subtotal*discountRate/100;
 
 let tax=
-(subtotal-discount)*
-taxRate/100;
-
+(subtotal-discount)*taxRate/100;
 
 let total=
 subtotal-discount+tax;
-
 
 let invoiceData={
 
 user_id:currentUser.id,
 
 invoice_number:
-document.getElementById(
-"number"
-).value||"INV-001",
+document.getElementById("number")
+.value||"INV-001",
 
 business_name:
-document.getElementById(
-"business"
-).value,
+document.getElementById("business")
+.value,
 
 customer_name:
-document.getElementById(
-"customer"
-).value,
+document.getElementById("customer")
+.value,
 
 customer_phone:
-document.getElementById(
-"phone"
-).value,
+document.getElementById("phone")
+.value,
 
 invoice_date:
-document.getElementById(
-"date"
-).value,
+document.getElementById("date")
+.value,
 
 payment_status:
-document.getElementById(
-"status"
-).value,
+document.getElementById("status")
+.value,
 
 tax:taxRate,
 
@@ -2574,9 +2351,7 @@ items:items
 
 };
 
-
 let result;
-
 
 if(editingInvoiceId){
 
@@ -2596,7 +2371,6 @@ await supabaseClient
 
 }
 
-
 if(result.error){
 
 alert(
@@ -2608,11 +2382,9 @@ return;
 
 }
 
-
 alert(
 "Invoice successfully saved."
 );
-
 
 loadHistory();
 
@@ -2627,38 +2399,26 @@ async function loadHistory(){
 
 showPage("historyPage");
 
-
 let list=
-document.getElementById(
-"historyList"
-);
+document.getElementById("historyList");
 
+list.innerHTML="Loading...";
 
-list.innerHTML=
-"Loading...";
-
-
-const {
-data,
-error
-}=
+const {data,error} =
 await supabaseClient
 .from("invoices")
 .select("*")
 .eq("user_id",currentUser.id)
 .order("created_at",{ascending:false});
 
-
 if(error){
 
 list.innerHTML=
-"Error: "+
-escapeHTML(error.message);
+"Error: "+escapeHTML(error.message);
 
 return;
 
 }
-
 
 if(!data||data.length===0){
 
@@ -2669,27 +2429,20 @@ return;
 
 }
 
-
 list.innerHTML="";
-
 
 data.forEach(invoice=>{
 
-let div=
-document.createElement("div");
+let div=document.createElement("div");
 
-div.className=
-"history-item";
-
+div.className="history-item";
 
 div.innerHTML=`
 
 <div>
 
 <strong>
-${escapeHTML(
-invoice.invoice_number
-)}
+${escapeHTML(invoice.invoice_number)}
 </strong>
 
 <br>
@@ -2714,29 +2467,22 @@ ${money(invoice.total)}
 
 </div>
 
-
 <div class="history-actions">
 
 <button
 class="light"
 onclick="openInvoice('${invoice.id}')">
-
 Open
-
 </button>
 
 <button
 class="red"
 onclick="deleteInvoice('${invoice.id}')">
-
 Delete
-
 </button>
 
 </div>
-
 `;
-
 
 list.appendChild(div);
 
@@ -2746,15 +2492,12 @@ list.appendChild(div);
 
 
 /* ==========================
-OPEN HISTORY INVOICE
+OPEN INVOICE
 ========================== */
 
 async function openInvoice(id){
 
-const {
-data,
-error
-}=
+const {data,error} =
 await supabaseClient
 .from("invoices")
 .select("*")
@@ -2762,78 +2505,45 @@ await supabaseClient
 .eq("user_id",currentUser.id)
 .single();
 
-
 if(error){
 
 alert(error.message);
-
 return;
 
 }
 
+editingInvoiceId=data.id;
 
-editingInvoiceId=
-data.id;
+document.getElementById("business")
+.value=data.business_name||"";
 
+document.getElementById("customer")
+.value=data.customer_name||"";
 
-document.getElementById(
-"business"
-).value=
-data.business_name||"";
+document.getElementById("phone")
+.value=data.customer_phone||"";
 
+document.getElementById("number")
+.value=data.invoice_number||"";
 
-document.getElementById(
-"customer"
-).value=
-data.customer_name||"";
+document.getElementById("date")
+.value=data.invoice_date||today();
 
+document.getElementById("status")
+.value=data.payment_status||"Unpaid";
 
-document.getElementById(
-"phone"
-).value=
-data.customer_phone||"";
+document.getElementById("tax")
+.value=data.tax||0;
 
+document.getElementById("discount")
+.value=data.discount||0;
 
-document.getElementById(
-"number"
-).value=
-data.invoice_number||"";
-
-
-document.getElementById(
-"date"
-).value=
-data.invoice_date||today();
-
-
-document.getElementById(
-"status"
-).value=
-data.payment_status||"Unpaid";
-
-
-document.getElementById(
-"tax"
-).value=
-data.tax||0;
-
-
-document.getElementById(
-"discount"
-).value=
-data.discount||0;
-
-
-document.getElementById(
-"items"
-).innerHTML="";
-
+document.getElementById("items")
+.innerHTML="";
 
 itemNumber=0;
 
-
-(data.items||[])
-.forEach(item=>{
+(data.items||[]).forEach(item=>{
 
 addItem(
 item.name,
@@ -2843,13 +2553,11 @@ item.price
 
 });
 
-
 if((data.items||[]).length===0){
 
 addItem();
 
 }
-
 
 updateInvoice();
 
@@ -2864,33 +2572,25 @@ DELETE
 
 async function deleteInvoice(id){
 
-if(!confirm(
-"Delete this invoice?"
-)){
+if(!confirm("Delete this invoice?")){
 
 return;
 
 }
 
-
-const {
-error
-}=
+const {error} =
 await supabaseClient
 .from("invoices")
 .delete()
 .eq("id",id)
 .eq("user_id",currentUser.id);
 
-
 if(error){
 
 alert(error.message);
-
 return;
 
 }
-
 
 loadHistory();
 
@@ -2905,7 +2605,6 @@ async function downloadPicture(){
 
 updateInvoice();
 
-
 if(typeof html2canvas==="undefined"){
 
 alert(
@@ -2916,14 +2615,11 @@ return;
 
 }
 
-
 try{
 
 const canvas=
 await html2canvas(
-document.getElementById(
-"invoice"
-),
+document.getElementById("invoice"),
 {
 scale:3,
 backgroundColor:"#ffffff",
@@ -2931,25 +2627,17 @@ useCORS:true
 }
 );
 
-
 const link=
 document.createElement("a");
 
-
 link.download=
 (
-document.getElementById(
-"number"
-).value
-||"invoice"
+document.getElementById("number")
+.value||"invoice"
 )+".png";
 
-
 link.href=
-canvas.toDataURL(
-"image/png"
-);
-
+canvas.toDataURL("image/png");
 
 document.body.appendChild(link);
 
@@ -2957,10 +2645,7 @@ link.click();
 
 link.remove();
 
-
-trackEvent(
-"picture_download"
-);
+trackEvent("picture_download");
 
 }catch(error){
 
@@ -2983,11 +2668,9 @@ function printInvoice(){
 
 updateInvoice();
 
-trackEvent(
-"print_pdf"
-);
-
 window.print();
+
+trackEvent("print_pdf");
 
 }
 
@@ -2998,19 +2681,13 @@ ANALYTICS
 
 async function trackEvent(eventName){
 
-if(!currentUser){
-
-return;
-
-}
-
+if(!currentUser)return;
 
 await supabaseClient
 .from("analytics_events")
 .insert({
 
 user_id:currentUser.id,
-
 event_name:eventName
 
 });
@@ -3026,13 +2703,9 @@ function setRating(rating){
 
 selectedRating=rating;
 
-
 document
-.querySelectorAll(
-".stars button"
-)
-.forEach(
-(button,index)=>{
+.querySelectorAll(".stars button")
+.forEach((button,index)=>{
 
 button.style.opacity=
 index<rating?"1":"0.35";
@@ -3044,9 +2717,8 @@ index<rating?"1":"0.35";
 
 function closeFeedback(){
 
-document.getElementById(
-"feedbackBox"
-).classList.add("hidden");
+document.getElementById("feedbackBox")
+.classList.add("hidden");
 
 }
 
@@ -3055,50 +2727,36 @@ async function submitFeedback(){
 
 if(!selectedRating){
 
-alert(
-"Please select a rating."
-);
-
+alert("Please select a rating.");
 return;
 
 }
 
-
 let message=
-document.getElementById(
-"feedbackText"
-).value;
+document.getElementById("feedbackText")
+.value;
 
-
-const {
-error
-}=
+const {error} =
 await supabaseClient
 .from("feedback")
 .insert({
 
 user_id:currentUser.id,
-
 rating:selectedRating,
-
 message:message
 
 });
 
-
 if(error){
 
 alert(error.message);
-
 return;
 
 }
 
-
 alert(
 "Thank you for your feedback!"
 );
-
 
 closeFeedback();
 
@@ -3106,23 +2764,55 @@ closeFeedback();
 
 
 /* ==========================
-START
+START APP
 ========================== */
 
 async function startApp(){
 
-const {
-data
-}=
+const {data} =
 await supabaseClient.auth.getSession();
 
 
 if(data.session){
 
-currentUser=
-data.session.user;
+currentUser=data.session.user;
+
+
+/*
+CHECK MFA BEFORE SHOWING APP
+*/
+
+const {
+data:aalData,
+error:aalError
+} =
+await supabaseClient.auth.mfa
+.getAuthenticatorAssuranceLevel();
+
+
+if(
+!aalError &&
+aalData.nextLevel==="aal2" &&
+aalData.currentLevel!=="aal2"
+){
+
+document.getElementById("authPage")
+.classList.remove("hidden");
+
+document.getElementById("appPage")
+.classList.add("hidden");
+
+document.getElementById("loginBox")
+.classList.add("hidden");
+
+document.getElementById("mfaLoginBox")
+.classList.remove("hidden");
+
+}else{
 
 await showApp();
+
+}
 
 }else{
 
@@ -3136,10 +2826,7 @@ async(event,session)=>{
 
 if(session){
 
-currentUser=
-session.user;
-
-await showApp();
+currentUser=session.user;
 
 }else{
 
@@ -3150,7 +2837,6 @@ showAuth();
 }
 
 }
-
 );
 
 }
